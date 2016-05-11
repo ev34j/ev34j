@@ -69,20 +69,6 @@ public class Ev3DevFs {
   public static boolean write(final String path, final String value) {
     LOGGER.fine(format("echo %s > %s", value, path));
     return write(path, value.getBytes());
-    /*
-    try {
-      try (final BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
-        bw.write(value);
-        bw.flush();
-        return true;
-      }
-    }
-    catch (IOException e) {
-      LOGGER.warning(format("Error when writing \"%s\" to %s", value, path));
-      e.printStackTrace();
-    }
-    return false;
-    */
   }
 
   public static boolean write(final String filePath, final int value) { return write(filePath, "" + value); }
@@ -106,7 +92,20 @@ public class Ev3DevFs {
     }
     catch (IOException e) {
       LOGGER.warning(format("%s %s", e.getClass().getSimpleName(), e.getMessage()));
+      e.printStackTrace();
       return "-1";
+    }
+  }
+
+  public static byte[] readBytes(final String filePath) {
+    LOGGER.fine(format("cat %s", filePath));
+    try {
+      return Files.readAllBytes(FileSystems.getDefault().getPath("", filePath));
+    }
+    catch (IOException e) {
+      LOGGER.warning(format("%s %s", e.getClass().getSimpleName(), e.getMessage()));
+      e.printStackTrace();
+      return null;
     }
   }
 }

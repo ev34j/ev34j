@@ -21,24 +21,31 @@ public class Display {
   private static int    LINE_LENGTH      = 24;   // bytes
   private static int    SIZE             = 3072; // bytes
 
-  private byte[] screenBuffer = new byte[SIZE];
+  private final byte[] screenBuffer = new byte[SIZE];
+
+  private final byte[] originalBuffer;
 
   private Display() {
     if (!Platform.isEv3Brick())
       throw new DeviceNotSupportedException(this.getClass());
+    this.originalBuffer = Ev3DevFs.readBytes(FRAMEBUFFER_PATH);
   }
 
   public Display inverse() {
     for (int i = 0; i < this.screenBuffer.length; i++)
       this.screenBuffer[i] = (byte) ~this.screenBuffer[i];
-    this.writeBuffer();
+    this.writeBuffer(this.screenBuffer);
     return this;
   }
 
   public Display clear() {
     this.clearBuffer((byte) 0x00);
-    this.writeBuffer();
+    this.writeBuffer(this.screenBuffer);
     return this;
+  }
+
+  public void restore() {
+    this.writeBuffer(this.originalBuffer);
   }
 
   private void clearBuffer(final byte value) {
@@ -46,5 +53,5 @@ public class Display {
       this.screenBuffer[i] = value;
   }
 
-  private void writeBuffer() { Ev3DevFs.write(FRAMEBUFFER_PATH, this.screenBuffer); }
+  private void writeBuffer(final byte[] buffer) { Ev3DevFs.write(FRAMEBUFFER_PATH, buffer); }
 }

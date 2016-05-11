@@ -76,7 +76,7 @@
               </descriptorRefs>
               <archive>
                 <manifest>
-                  <mainClass>com.ev34j.mindstorm.LedTest</mainClass>
+                  <mainClass>com.ev34j.mindstorm.Ev3DisplayTest</mainClass>
                   <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                 </manifest>
               </archive>

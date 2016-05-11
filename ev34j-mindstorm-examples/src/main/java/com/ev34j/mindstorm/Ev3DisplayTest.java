@@ -7,13 +7,13 @@ public class Ev3DisplayTest {
 
   public static void main(String[] args) {
 
-    for (int i = 0; i < 25; i++) {
+    for (int i = 0; i < 20; i++) {
       Ev3Display.clear();
       Delay.delayMillis(200);
       Ev3Display.inverse();
       Delay.delayMillis(200);
     }
 
-    Ev3Display.clear();
+    Ev3Display.restore();
   }
 }

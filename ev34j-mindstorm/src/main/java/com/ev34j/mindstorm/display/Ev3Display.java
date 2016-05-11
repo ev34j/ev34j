@@ -9,4 +9,6 @@ public class Ev3Display {
   public static void clear() { Display.getInstance().clear(); }
 
   public static void inverse() { Display.getInstance().inverse(); }
+
+  public static void restore() { Display.getInstance().restore(); }
 }
