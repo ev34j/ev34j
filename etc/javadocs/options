@@ -1,0 +1,6 @@
+-classpath ./ev34j-core/target/classes:./ev34j-mindstorm/target/classes
+-sourcepath ./ev34j-core/src/main/java:./ev34j-mindstorm/src/main/java
+-public
+-notree
+-noqualifier all
+
