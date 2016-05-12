@@ -10,5 +10,15 @@ public class Ev3Display {
 
   public static void inverse() { Display.getInstance().inverse(); }
 
+  public static void refresh() { Display.getInstance().refresh(); }
+
+  public static void drawRect(final int x, final int y, final int width, final int height) {
+    Display.getInstance().drawRect(x, y, width, height);
+  }
+
+  public static void drawVerticalLine(final int x) { Display.getInstance().drawVerticalLine(x); }
+
+  public static void drawHorizontalLine(final int y) { Display.getInstance().drawHorizontalLine(y); }
+
   public static void restore() { Display.getInstance().restore(); }
 }
