@@ -4,7 +4,9 @@ import com.ev34j.core.common.DeviceNotSupportedException;
 import com.ev34j.core.common.Platform;
 import com.ev34j.core.utils.Ev3DevFs;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -26,23 +28,22 @@ public class Display {
   private static int    WIDTH_PIXELS     = 192;  // pixels -- only 178 actually displayed
   private static int    TOTAL_PIXELS     = 3072; // bytes
 
-  private final BufferedImage image        = new BufferedImage(WIDTH_PIXELS, HEIGHT_PIXELS, TYPE_BYTE_BINARY);
-  private final int[]         drawBuffer   = new int[WIDTH_PIXELS * HEIGHT_PIXELS];
-  private final byte[]        screenBuffer = new byte[TOTAL_PIXELS];
+  private final AtomicReference<BufferedImage> imageRef     = new AtomicReference<>();
+  private final AtomicReference<Graphics>      graphicsRef  = new AtomicReference<>();
+  private final int[]                          drawBuffer   = new int[WIDTH_PIXELS * HEIGHT_PIXELS];
+  private final byte[]                         screenBuffer = new byte[TOTAL_PIXELS];
 
   private int  currentSize = -1;
   private Font currentFont = null;
 
-  private final byte[]   originalBuffer;
-  private final Graphics graphics;
+  private final byte[] originalBuffer;
 
   private Display() {
     if (!Platform.isEv3Brick())
       throw new DeviceNotSupportedException(this.getClass());
 
     this.originalBuffer = Ev3DevFs.readBytes(FRAMEBUFFER_PATH);
-    this.graphics = this.image.getGraphics();
-    this.graphics.setColor(Color.white);
+    this.setBlack(true);
   }
 
   public void inverse() {
@@ -57,28 +58,28 @@ public class Display {
   }
 
   public void clearGraphicsBuffer() {
-    this.graphics.setColor(Color.black);
+    this.getGraphics().setColor(Color.black);
     this.fillRect(0, 0, WIDTH_PIXELS, HEIGHT_PIXELS);
-    this.graphics.setColor(Color.white);
+    this.getGraphics().setColor(Color.white);
   }
 
   public void drawHorizontalLine(final int row) {
     final int base = row * WIDTH_BYTES;
     for (int col = 0; col < WIDTH_BYTES; col++)
-      this.screenBuffer[base + col] = (byte) 0xFF;
+      this.screenBuffer[base + col] = (byte) (this.isBlack() ? 0xFF : 0x00);
   }
 
   public void drawVerticalLine(final int col) {
     final int offset = col / 8;
-    final int pattern = 1 << (col % 8);
+    final int pattern = 1 << col % 8;
     for (int row = 0; row < HEIGHT_PIXELS; row++) {
       final int pos = (row * WIDTH_BYTES) + offset;
-      this.screenBuffer[pos] = (byte) (this.screenBuffer[pos] | pattern);
+      this.screenBuffer[pos] = (byte) (this.isBlack() ? this.screenBuffer[pos] | pattern : this.screenBuffer[pos] & ~pattern);
     }
   }
 
   public void drawLine(final int x1, final int y1, final int x2, final int y2) {
-    this.graphics.drawLine(x1, y1, x2, y2);
+    this.getGraphics().drawLine(x1, y1, x2, y2);
   }
 
   public void drawString(String str, int x, int y, final int size) {
@@ -86,20 +87,20 @@ public class Display {
       this.currentSize = size;
       this.currentFont = new Font(Font.SANS_SERIF, Font.PLAIN, this.currentSize);
     }
-    this.graphics.setFont(this.currentFont);
-    this.graphics.drawString(str, x, y);
+    this.getGraphics().setFont(this.currentFont);
+    this.getGraphics().drawString(str, x, y);
   }
 
   public void drawPoint(final int x, final int y) {
-    this.graphics.drawRect(x, y, 1, 1);
+    this.getGraphics().drawRect(x, y, 1, 1);
   }
 
   public void drawRect(final int x, final int y, final int width, final int height) {
-    this.graphics.drawRect(x, y, width, height);
+    this.getGraphics().drawRect(x, y, width, height);
   }
 
   public void drawOval(final int x, final int y, final int width, final int height) {
-    this.graphics.drawOval(x, y, width, height);
+    this.getGraphics().drawOval(x, y, width, height);
   }
 
   public void drawArc(final int x,
@@ -108,15 +109,15 @@ public class Display {
                       final int height,
                       final int startAngle,
                       final int arcAngle) {
-    this.graphics.drawArc(x, y, width, height, startAngle, arcAngle);
+    this.getGraphics().drawArc(x, y, width, height, startAngle, arcAngle);
   }
 
   public void fillRect(final int x, final int y, final int width, final int height) {
-    this.graphics.fillRect(x, y, width, height);
+    this.getGraphics().fillRect(x, y, width, height);
   }
 
   public void fillOval(final int x, final int y, final int width, final int height) {
-    this.graphics.fillOval(x, y, width, height);
+    this.getGraphics().fillOval(x, y, width, height);
   }
 
   public void restore() { this.writeBuffer(this.originalBuffer); }
@@ -126,12 +127,31 @@ public class Display {
       this.screenBuffer[i] = 0;
   }
 
+  public void setBlack(final boolean black) {
+    // Color is reversed
+    this.getGraphics().setColor(black ? Color.white : Color.black);
+  }
+
+  private boolean isBlack() { return this.getGraphics().getColor() == Color.white; }
+
   private void writeBuffer(final byte[] buffer) { Ev3DevFs.write(FRAMEBUFFER_PATH, buffer); }
+
+  private BufferedImage getImage() {
+    if (this.imageRef.get() == null)
+      this.imageRef.compareAndSet(null, new BufferedImage(WIDTH_PIXELS, HEIGHT_PIXELS, TYPE_BYTE_BINARY));
+    return this.imageRef.get();
+  }
+
+  private Graphics getGraphics() {
+    if (this.graphicsRef.get() == null)
+      this.graphicsRef.compareAndSet(null, this.getImage().getGraphics());
+    return this.graphicsRef.get();
+  }
 
   private int[] getPixels() {
     for (int i = 0; i < this.drawBuffer.length; i++)
       this.drawBuffer[i] = 0;
-    return this.image.getData().getPixels(0, 0, WIDTH_PIXELS, HEIGHT_PIXELS, this.drawBuffer);
+    return this.getImage().getData().getPixels(0, 0, WIDTH_PIXELS, HEIGHT_PIXELS, this.drawBuffer);
   }
 
   private void mapPixelsToScreenBuffer() {
