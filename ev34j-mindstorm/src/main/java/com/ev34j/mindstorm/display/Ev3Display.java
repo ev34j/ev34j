@@ -12,6 +12,10 @@ public class Ev3Display {
 
   public static void refresh() { Display.getInstance().refresh(); }
 
+  public static void drawLine(final int x1, final int y1, final int x2, final int y2) {
+    Display.getInstance().drawLine(x1, y1, x2, y2);
+  }
+
   public static void drawRect(final int x, final int y, final int width, final int height) {
     Display.getInstance().drawRect(x, y, width, height);
   }

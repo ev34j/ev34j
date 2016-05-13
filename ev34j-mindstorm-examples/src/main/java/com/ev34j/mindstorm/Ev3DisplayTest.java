@@ -34,8 +34,16 @@ public class Ev3DisplayTest {
 
     Ev3Display.clear();
 
-    Ev3Display.drawRect(0, 0, 10, 10);
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 40; i++) {
+      Ev3Display.clear();
+      Ev3Display.drawRect(i, i, 10, 10);
+      Ev3Display.refresh();
+      Delay.delayMillis(100);
+    }
+
+    //Ev3Display.drawLine(0, 0, 6, 0);
+    //Ev3Display.drawLine(0, 0, 0, 6);
+    for (int i = 0; i < 200; i++) {
       Ev3Display.refresh();
       Delay.delayMillis(100);
     }
