@@ -24,29 +24,29 @@ public class UnregulatedMotorDemo {
     //Testing DC-Motor 1
     umotor1.forward();
     System.out.println(umotor1.isMoving());
-    Delay.delayMillis(ONE_SECOND);
+    Delay.millis(ONE_SECOND);
     umotor1.stop();
     System.out.println(umotor1.isMoving());
     umotor1.backward();
     System.out.println(umotor1.isMoving());
-    Delay.delayMillis(ONE_SECOND);
+    Delay.millis(ONE_SECOND);
     umotor1.stop();
     System.out.println(umotor1.isMoving());
     umotor1.forward();
     System.out.println(umotor1.isMoving());
-    Delay.delayMillis(ONE_SECOND);
+    Delay.millis(ONE_SECOND);
     umotor1.stop();
 
 
     //Testing DC-Motor 2
     umotor2.forward();
-    Delay.delayMillis(ONE_SECOND);
+    Delay.millis(ONE_SECOND);
     umotor2.stop();
     umotor2.backward();
-    Delay.delayMillis(ONE_SECOND);
+    Delay.millis(ONE_SECOND);
     umotor1.stop();
     umotor2.forward();
-    Delay.delayMillis(ONE_SECOND);
+    Delay.millis(ONE_SECOND);
     umotor2.stop();
 
 

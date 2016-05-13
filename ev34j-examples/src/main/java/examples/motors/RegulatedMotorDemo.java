@@ -17,17 +17,17 @@ public class RegulatedMotorDemo {
 
     mA.forward();
     System.out.println(mA.isMoving());
-    Delay.delayMillis(ONE_SECOND);
+    Delay.millis(ONE_SECOND);
     mA.stop();
     System.out.println(mA.isMoving());
     mA.backward();
     System.out.println(mA.isMoving());
-    Delay.delayMillis(ONE_SECOND);
+    Delay.millis(ONE_SECOND);
     mA.stop();
     System.out.println(mA.isMoving());
     mA.forward();
     System.out.println(mA.isMoving());
-    Delay.delayMillis(ONE_SECOND);
+    Delay.millis(ONE_SECOND);
     mA.stop();
     System.out.println(Battery.getInstance().getVoltage());
 

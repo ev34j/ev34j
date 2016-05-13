@@ -34,8 +34,8 @@ public abstract class AbstractMultiMotors {
 
   public void waitUntilStopped() {
     // Pause to give motors a chance to start
-    Delay.delayMillis(AbstractMotor.getMotorPollingWaitMillis());
+    Delay.millis(AbstractMotor.getMotorPollingWaitMillis());
     while (this.motor1.isMoving() || this.motor2.isMoving())
-      Delay.delayMillis(AbstractMotor.getMotorPollingWaitMillis());
+      Delay.millis(AbstractMotor.getMotorPollingWaitMillis());
   }
 }

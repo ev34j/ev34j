@@ -8,7 +8,7 @@ public class SpeachTest {
   public static void main(String[] args) {
 
     Ev3Sound.sayAsEnglish("I am a LEGO robot");
-    Delay.delaySecs(1);
+    Delay.secs(1);
     Ev3Sound.sayAsSpanish("Soy un robot LEGO");
   }
 }

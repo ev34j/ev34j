@@ -36,7 +36,7 @@ public class TouchSensorDemo {
       System.out.println("Touch: " + touchValue);
       System.out.println();
 
-      Delay.delayMillis(HALF_SECOND);
+      Delay.millis(HALF_SECOND);
     }
 
   }

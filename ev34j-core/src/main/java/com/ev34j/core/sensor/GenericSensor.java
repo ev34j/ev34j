@@ -137,7 +137,7 @@ public abstract class GenericSensor
       final String modeValue = this.getModeType().getMode();
       if (modeValue != null) {
         this.setAttribute(MODE, modeValue);
-        Delay.delayMillis(SWITCH_DELAY_MILLIS);
+        Delay.millis(SWITCH_DELAY_MILLIS);
       }
     }
   }

@@ -16,7 +16,7 @@ public class LargeMotorTest {
     mA.setSpeed(500);
     mA.forward();
     System.out.println(String.format("Large Motor is moving: %s at speed %d", mA.isMoving(), mA.getSpeed()));
-    Delay.delayMillis(2000);
+    Delay.millis(2000);
     mA.stop();
     System.out.println("Stopped motor");
     System.out.println("Battery: " + Battery.getInstance().getVoltage());

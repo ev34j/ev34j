@@ -59,12 +59,12 @@ public class Test {
   private static void backwardWithTurn() {
     mA.backward();
     mB.backward();
-    Delay.delayMillis(1000);
+    Delay.millis(1000);
     mA.stop();
     mB.stop();
     mA.backward();
     mB.forward();
-    Delay.delayMillis(1000);
+    Delay.millis(1000);
     mA.stop();
     mB.stop();
   }

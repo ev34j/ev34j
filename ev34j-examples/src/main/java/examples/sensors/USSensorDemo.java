@@ -34,7 +34,7 @@ public class USSensorDemo {
       System.out.println("Touch: " + distanceValue);
       System.out.println();
 
-      Delay.delayMillis(HALF_SECOND);
+      Delay.millis(HALF_SECOND);
     }
 
   }

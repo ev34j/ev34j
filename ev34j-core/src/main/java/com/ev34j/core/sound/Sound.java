@@ -44,7 +44,7 @@ public class Sound
    */
   public void beep() {
     Shell.execute("beep");
-    Delay.delayMillis(100);
+    Delay.millis(100);
   }
 
   /**
@@ -58,7 +58,7 @@ public class Sound
     this.setVolume(volume);
     String cmd2 = " " + frequency + " " + duration;
     Ev3DevFs.write(TONE_PATH, cmd2);
-    Delay.delayMillis(duration);
+    Delay.millis(duration);
   }
 
   /**
@@ -70,7 +70,7 @@ public class Sound
   public void playTone(int frequency, int duration) {
     String cmd2 = " " + frequency + " " + duration;
     Ev3DevFs.write(TONE_PATH, cmd2);
-    Delay.delayMillis(duration);
+    Delay.millis(duration);
   }
 
   /**

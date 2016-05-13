@@ -27,7 +27,7 @@ public class ColorSensorDemo {
     for (int i = 0; i < 10; i++) {
       sensorMode.fetchSample(sample, 0);
       System.out.println("N=" + i + " Sample=" + (int) sample[0]);
-      Delay.delayMillis(HALF_SECOND);
+      Delay.millis(HALF_SECOND);
     }
 
     //Color ID
@@ -41,7 +41,7 @@ public class ColorSensorDemo {
       sensorMode.fetchSample(sample, 0);
       System.out.println("N=" + i + " Sample=" + (int) sample[0]);
 
-      Delay.delayMillis(HALF_SECOND);
+      Delay.millis(HALF_SECOND);
     }
 
     //Ambient Mode
@@ -55,7 +55,7 @@ public class ColorSensorDemo {
       sensorMode.fetchSample(sample, 0);
       System.out.println("N=" + i + " Sample=" + (int) sample[0]);
 
-      Delay.delayMillis(HALF_SECOND);
+      Delay.millis(HALF_SECOND);
     }
 
     //RGB
@@ -71,7 +71,7 @@ public class ColorSensorDemo {
       System.out.println("N=" + i + " Sample=" + (int) sample[1]);
       System.out.println("N=" + i + " Sample=" + (int) sample[2]);
 
-      Delay.delayMillis(HALF_SECOND);
+      Delay.millis(HALF_SECOND);
     }
 
   }

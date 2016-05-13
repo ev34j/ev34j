@@ -30,7 +30,7 @@ public class IRSensorDemo {
       System.out.println("Distance: " + distanceValue);
       System.out.println();
 
-      Delay.delayMillis(HALF_SECOND);
+      Delay.millis(HALF_SECOND);
     }
   }
 }

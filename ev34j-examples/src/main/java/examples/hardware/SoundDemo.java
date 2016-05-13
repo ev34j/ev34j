@@ -29,7 +29,7 @@ public class SoundDemo {
 
     sound.beep();
 
-    Delay.delayMillis(ONE_SECOND);
+    Delay.millis(ONE_SECOND);
 
     for (int i = FREQ1; i <= FREQ2; i += variation) {
       sound.playTone(i, 500, 100);

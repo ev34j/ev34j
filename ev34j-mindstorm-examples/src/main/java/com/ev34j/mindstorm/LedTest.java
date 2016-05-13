@@ -18,28 +18,28 @@ public class LedTest {
     Ev3Sound.sayAsEnglish("Red");
     left.red();
     right.red();
-    Delay.delaySecs(2);
+    Delay.secs(2);
 
     Ev3Sound.setVolume(25);
     Ev3Sound.sayAsEnglish("Volume is: " + Ev3Sound.getVolume());
     Ev3Sound.sayAsEnglish("Green");
     left.green();
     right.green();
-    Delay.delaySecs(2);
+    Delay.secs(2);
 
     Ev3Sound.setVolume(50);
     Ev3Sound.sayAsEnglish("Volume is: " + Ev3Sound.getVolume());
     Ev3Sound.sayAsEnglish("Orange");
     left.orange();
     right.orange();
-    Delay.delaySecs(2);
+    Delay.secs(2);
 
     Ev3Sound.setVolume(100);
     Ev3Sound.sayAsEnglish("Volume is: " + Ev3Sound.getVolume());
     Ev3Sound.sayAsEnglish("Off");
     left.off();
     right.off();
-    Delay.delaySecs(2);
+    Delay.secs(2);
   }
 
 }

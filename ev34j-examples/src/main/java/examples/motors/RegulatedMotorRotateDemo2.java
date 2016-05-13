@@ -22,19 +22,19 @@ public class RegulatedMotorRotateDemo2 {
     System.out.println(mA.getTachoCount());
     mA.rotate(degreesToTurn);
     sound.beep();
-    Delay.delayMillis(1000);
+    Delay.millis(1000);
     System.out.println(mA.getTachoCount());
     mA.rotate(degreesToTurn);
     sound.beep();
-    Delay.delayMillis(1000);
+    Delay.millis(1000);
     System.out.println(mA.getTachoCount());
     mA.rotate(degreesToTurn);
     sound.beep();
-    Delay.delayMillis(1000);
+    Delay.millis(1000);
     System.out.println(mA.getTachoCount());
     mA.rotate(degreesToTurn);
     sound.beep();
-    Delay.delayMillis(1000);
+    Delay.millis(1000);
     System.out.println(mA.getTachoCount());
     System.out.println(Battery.getInstance().getVoltage());
 

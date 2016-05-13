@@ -35,13 +35,13 @@ public class Ev3Test {
     final Ev3InfraredSensor ir = new Ev3InfraredSensor("2");
     for (int i = 0; i < 100; i++) {
       System.out.println(format("IR: %s", ir.getDistancePercent()));
-      Delay.delayMillis(100);
+      Delay.millis(100);
     }
 
     final NxtUltrasonicSensor us = new NxtUltrasonicSensor("2");
     for (int i = 0; i < 100; i++) {
       System.out.println(format("US: %s", us.getDistanceInches()));
-      Delay.delayMillis(100);
+      Delay.millis(100);
     }
 
   }

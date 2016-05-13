@@ -36,7 +36,7 @@ public class GyroSensorDemo {
       System.out.println("Touch: " + value);
       System.out.println();
 
-      Delay.delayMillis(HALF_SECOND);
+      Delay.millis(HALF_SECOND);
     }
 
   }

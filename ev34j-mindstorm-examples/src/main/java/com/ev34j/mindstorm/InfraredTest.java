@@ -17,13 +17,13 @@ public class InfraredTest {
 
     while (touch.isReleased()) {
       System.out.println(String.format("Distance %% is: %s", ir.getDistancePercent()));
-      Delay.delayMillis(500);
+      Delay.millis(500);
     }
 
     System.out.println("Touch sensor pressed");
 
     // Pause to give use a chance to let go of button
-    Delay.delaySecs(3);
+    Delay.secs(3);
 
     System.out.println("Press touch sensor");
 
@@ -37,7 +37,7 @@ public class InfraredTest {
 
     while (ir.getDistancePercent() > 15) {
       System.out.println(String.format("Distance %% is: %s", ir.getDistancePercent()));
-      Delay.delayMillis(500);
+      Delay.millis(500);
     }
 
     System.out.println("Got below 15% on the infrared sensor");

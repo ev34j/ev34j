@@ -132,9 +132,9 @@ public abstract class AbstractMotor {
 
   public void waitUntilStopped() {
     // Pause to give motors a chance to start
-    Delay.delayMillis(getMotorPollingWaitMillis());
+    Delay.millis(getMotorPollingWaitMillis());
     while (this.motor.isMoving())
-      Delay.delayMillis(getMotorPollingWaitMillis());
+      Delay.millis(getMotorPollingWaitMillis());
   }
 }
 

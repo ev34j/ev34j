@@ -23,13 +23,13 @@ public abstract class AbstractTouchSensor
 
   public void waitUntilPressed() {
     while (!this.isPressed()) {
-      Delay.delayMillis(AbstractSensor.getSensorPollingWaitMillis());
+      Delay.millis(AbstractSensor.getSensorPollingWaitMillis());
     }
   }
 
   public void waitUntilReleased() {
     while (this.isPressed()) {
-      Delay.delayMillis(AbstractSensor.getSensorPollingWaitMillis());
+      Delay.millis(AbstractSensor.getSensorPollingWaitMillis());
     }
   }
 
@@ -47,7 +47,7 @@ public abstract class AbstractTouchSensor
       if (System.currentTimeMillis() - start > timeUnit.toMillis(time))
         return false;
       else
-        Delay.delayMillis(AbstractSensor.getSensorPollingWaitMillis());
+        Delay.millis(AbstractSensor.getSensorPollingWaitMillis());
     }
     return true;
   }
@@ -61,7 +61,7 @@ public abstract class AbstractTouchSensor
       if (System.currentTimeMillis() - start > timeUnit.toMillis(time))
         return false;
       else
-        Delay.delayMillis(AbstractSensor.getSensorPollingWaitMillis());
+        Delay.millis(AbstractSensor.getSensorPollingWaitMillis());
     }
     return true;
   }

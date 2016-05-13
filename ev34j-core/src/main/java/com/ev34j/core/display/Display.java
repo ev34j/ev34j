@@ -7,6 +7,7 @@ import com.ev34j.core.utils.Ev3DevFs;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Polygon;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -41,10 +42,13 @@ public class Display {
   private Display() {
     if (!Platform.isEv3Brick())
       throw new DeviceNotSupportedException(this.getClass());
-
     this.originalBuffer = Ev3DevFs.readBytes(FRAMEBUFFER_PATH);
-    this.setBlack(true);
+    this.setColor(true);
   }
+
+  public int getDisplayWidth() { return 178; }
+
+  public int getDisplayHeight() { return HEIGHT_PIXELS; }
 
   public void inverse() {
     for (int i = 0; i < this.screenBuffer.length; i++)
@@ -52,21 +56,20 @@ public class Display {
   }
 
   public Display refresh() {
-    this.mapPixelsToScreenBuffer();
     this.writeBuffer(this.screenBuffer);
     return this;
   }
 
   public void clearGraphicsBuffer() {
-    this.getGraphics().setColor(Color.black);
+    this.setColor(false);
     this.fillRect(0, 0, WIDTH_PIXELS, HEIGHT_PIXELS);
-    this.getGraphics().setColor(Color.white);
+    this.setColor(true);
   }
 
   public void drawHorizontalLine(final int row) {
     final int base = row * WIDTH_BYTES;
     for (int col = 0; col < WIDTH_BYTES; col++)
-      this.screenBuffer[base + col] = (byte) (this.isBlack() ? 0xFF : 0x00);
+      this.screenBuffer[base + col] = (byte) (this.isColor() ? 0xFF : 0x00);
   }
 
   public void drawVerticalLine(final int col) {
@@ -74,7 +77,7 @@ public class Display {
     final int pattern = 1 << col % 8;
     for (int row = 0; row < HEIGHT_PIXELS; row++) {
       final int pos = (row * WIDTH_BYTES) + offset;
-      this.screenBuffer[pos] = (byte) (this.isBlack() ? this.screenBuffer[pos] | pattern : this.screenBuffer[pos] & ~pattern);
+      this.screenBuffer[pos] = (byte) (this.isColor() ? this.screenBuffer[pos] | pattern : this.screenBuffer[pos] & ~pattern);
     }
   }
 
@@ -91,16 +94,20 @@ public class Display {
     this.getGraphics().drawString(str, x, y);
   }
 
-  public void drawPoint(final int x, final int y) {
-    this.getGraphics().drawRect(x, y, 1, 1);
-  }
-
   public void drawRect(final int x, final int y, final int width, final int height) {
     this.getGraphics().drawRect(x, y, width, height);
   }
 
+  public void fillRect(final int x, final int y, final int width, final int height) {
+    this.getGraphics().fillRect(x, y, width, height);
+  }
+
   public void drawOval(final int x, final int y, final int width, final int height) {
     this.getGraphics().drawOval(x, y, width, height);
+  }
+
+  public void fillOval(final int x, final int y, final int width, final int height) {
+    this.getGraphics().fillOval(x, y, width, height);
   }
 
   public void drawArc(final int x,
@@ -112,13 +119,18 @@ public class Display {
     this.getGraphics().drawArc(x, y, width, height, startAngle, arcAngle);
   }
 
-  public void fillRect(final int x, final int y, final int width, final int height) {
-    this.getGraphics().fillRect(x, y, width, height);
+  public void fillArc(final int x,
+                      final int y,
+                      final int width,
+                      final int height,
+                      final int startAngle,
+                      final int arcAngle) {
+    this.getGraphics().fillArc(x, y, width, height, startAngle, arcAngle);
   }
 
-  public void fillOval(final int x, final int y, final int width, final int height) {
-    this.getGraphics().fillOval(x, y, width, height);
-  }
+  public void drawPolygon(final Polygon polygon) { this.getGraphics().drawPolygon(polygon); }
+
+  public void fillPolygon(final Polygon polygon) { this.getGraphics().fillPolygon(polygon); }
 
   public void restore() { this.writeBuffer(this.originalBuffer); }
 
@@ -127,12 +139,12 @@ public class Display {
       this.screenBuffer[i] = 0;
   }
 
-  public void setBlack(final boolean black) {
+  public void setColor(final boolean black) {
     // Color is reversed
     this.getGraphics().setColor(black ? Color.white : Color.black);
   }
 
-  private boolean isBlack() { return this.getGraphics().getColor() == Color.white; }
+  private boolean isColor() { return this.getGraphics().getColor() == Color.white; }
 
   private void writeBuffer(final byte[] buffer) { Ev3DevFs.write(FRAMEBUFFER_PATH, buffer); }
 
@@ -149,12 +161,12 @@ public class Display {
   }
 
   private int[] getPixels() {
-    for (int i = 0; i < this.drawBuffer.length; i++)
-      this.drawBuffer[i] = 0;
+    //for (int i = 0; i < this.drawBuffer.length; i++)
+    //  this.drawBuffer[i] = 0;
     return this.getImage().getData().getPixels(0, 0, WIDTH_PIXELS, HEIGHT_PIXELS, this.drawBuffer);
   }
 
-  private void mapPixelsToScreenBuffer() {
+  public void mapGraphicsToScreenBuffer() {
     final int[] pixels = this.getPixels();
     int pos = 0;
     for (int row = 0; row < HEIGHT_PIXELS; row++) {
