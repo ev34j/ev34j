@@ -1,6 +1,5 @@
 package com.ev34j.mindstorm;
 
-import com.ev34j.core.utils.Delay;
 import com.ev34j.mindstorm.display.Ev3Display;
 
 public class Ev3DisplayTest {
@@ -32,21 +31,36 @@ public class Ev3DisplayTest {
     }
     */
 
-    Ev3Display.clear();
+    Ev3Display.clearDisplay();
 
-    for (int i = 0; i < 40; i++) {
-      Ev3Display.clear();
+    for (int i = 0; i < 60; i++) {
+      Ev3Display.clearBuffer();
       Ev3Display.drawRect(i, i, 10, 10);
       Ev3Display.refresh();
-      Delay.delayMillis(100);
     }
 
+    Ev3Display.clearDisplay();
+
+    for (int i = 0; i < 60; i++) {
+      Ev3Display.clearBuffer();
+      Ev3Display.fillRect(i, i, 10, 10);
+      Ev3Display.refresh();
+    }
+
+    for (int i = 0; i < 60; i++) {
+      Ev3Display.clearBuffer();
+      Ev3Display.drawString("Hello world", i, i);
+      Ev3Display.refresh();
+    }
+
+    /*
     //Ev3Display.drawLine(0, 0, 6, 0);
     //Ev3Display.drawLine(0, 0, 0, 6);
     for (int i = 0; i < 200; i++) {
       Ev3Display.refresh();
       Delay.delayMillis(100);
     }
+*/
 
     Ev3Display.restore();
   }
