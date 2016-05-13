@@ -35,6 +35,7 @@ public class Display {
   private Display() {
     if (!Platform.isEv3Brick())
       throw new DeviceNotSupportedException(this.getClass());
+
     this.originalBuffer = Ev3DevFs.readBytes(FRAMEBUFFER_PATH);
     this.graphics = this.image.getGraphics();
     this.graphics.setColor(Color.white);
@@ -46,6 +47,7 @@ public class Display {
   }
 
   public Display refresh() {
+    this.mapPixelsToScreenBuffer();
     this.writeBuffer(this.screenBuffer);
     return this;
   }
@@ -54,11 +56,11 @@ public class Display {
     this.graphics.setColor(Color.black);
     this.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     this.graphics.setColor(Color.white);
-    this.clearBuffer();
+    this.clearScreenBuffer();
   }
 
   public void clearDisplay() {
-    this.clearBuffer();
+    this.clearScreenBuffer();
     this.refresh();
   }
 
@@ -79,23 +81,19 @@ public class Display {
 
   public void drawLine(final int x1, final int y1, final int x2, final int y2) {
     this.graphics.drawLine(x1, y1, x2, y2);
-    this.mapPixelsToScreenBuffer();
   }
 
-  public void drawString(String str, int x, int y) {
-    //this.graphics.setFont(new Font());
+  public void drawString(String str, int x, int y, final int size) {
+    this.graphics.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, size));
     this.graphics.drawString(str, x, y);
-    this.mapPixelsToScreenBuffer();
   }
 
   public void drawRect(final int x, final int y, final int width, final int height) {
     this.graphics.drawRect(x, y, width, height);
-    this.mapPixelsToScreenBuffer();
   }
 
   public void fillRect(final int x, final int y, final int width, final int height) {
     this.graphics.fillRect(x, y, width, height);
-    this.mapPixelsToScreenBuffer();
   }
 
   private int[] getPixels() {
@@ -104,11 +102,22 @@ public class Display {
     return this.image.getData().getPixels(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, this.drawBuffer);
   }
 
-  private void printPixels(final int[] pixels, final int numlines) {
-    System.out.println("****");
+
+  public void restore() { this.writeBuffer(this.originalBuffer); }
+
+  private void clearScreenBuffer() {
+    for (int i = 0; i < this.screenBuffer.length; i++)
+      this.screenBuffer[i] = 0;
+  }
+
+  private void writeBuffer(final byte[] buffer) { Ev3DevFs.write(FRAMEBUFFER_PATH, buffer); }
+
+  private void printPixels(final int numLines) {
+    final int[] pixels = this.getPixels();
+    System.out.println("****Pixels****");
     for (int row = 0; row < SCREEN_HEIGHT; row++) {
       final int row_offset = row * SCREEN_WIDTH;
-      if (row <= numlines) {
+      if (row <= numLines) {
         for (int col = 0; col < SCREEN_WIDTH; col++) {
           if (col > 0 && col % 8 == 0)
             System.out.print(" ");
@@ -120,15 +129,15 @@ public class Display {
     }
   }
 
-  private void printScreenBuffer(final int numlines) {
-    System.out.println("****");
+  private void printScreenBuffer(final int numLines) {
+    System.out.println("****ScreenBuffer****");
     for (int pos = 0; pos < this.screenBuffer.length; pos++) {
       if (pos > 0 && pos % LINE_LENGTH == 0) {
         System.out.println();
         System.out.flush();
       }
 
-      if (pos > LINE_LENGTH * numlines) {
+      if (pos > LINE_LENGTH * numLines) {
         System.out.println();
         System.out.flush();
         break;
@@ -163,13 +172,4 @@ public class Display {
       }
     }
   }
-
-  public void restore() { this.writeBuffer(this.originalBuffer); }
-
-  private void clearBuffer() {
-    for (int i = 0; i < this.screenBuffer.length; i++)
-      this.screenBuffer[i] = 0;
-  }
-
-  private void writeBuffer(final byte[] buffer) { Ev3DevFs.write(FRAMEBUFFER_PATH, buffer); }
 }

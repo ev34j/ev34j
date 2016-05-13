@@ -14,8 +14,8 @@ public class Ev3Display {
 
   public static void refresh() { Display.getInstance().refresh(); }
 
-  public static void drawString(final String str, final int x, final int y) {
-    Display.getInstance().drawString(str, x, y);
+  public static void drawString(final String str, final int x, final int y, final int size) {
+    Display.getInstance().drawString(str, x, y, size);
   }
 
   public static void drawLine(final int x1, final int y1, final int x2, final int y2) {
