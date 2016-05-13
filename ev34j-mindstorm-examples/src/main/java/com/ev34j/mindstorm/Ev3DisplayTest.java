@@ -34,23 +34,23 @@ public class Ev3DisplayTest {
     Ev3Display.clearDisplay();
 
     for (int i = 0; i < 60; i += 3) {
-      Ev3Display.clearBuffer();
+      Ev3Display.resetDisplay();
       Ev3Display.drawRect(i, i, 10, 10);
-      Ev3Display.refresh();
+      Ev3Display.refreshDisplay();
     }
 
     Ev3Display.clearDisplay();
 
     for (int i = 0; i < 60; i += 3) {
-      Ev3Display.clearBuffer();
+      Ev3Display.resetDisplay();
       Ev3Display.fillRect(i, i, 10, 10);
-      Ev3Display.refresh();
+      Ev3Display.refreshDisplay();
     }
 
     for (int i = 0; i < 60; i += 3) {
-      Ev3Display.clearBuffer();
+      Ev3Display.resetDisplay();
       Ev3Display.drawString("Hello world", i, i, i / 2);
-      Ev3Display.refresh();
+      Ev3Display.refreshDisplay();
     }
 
     /*
@@ -62,6 +62,6 @@ public class Ev3DisplayTest {
     }
 */
 
-    Ev3Display.restore();
+    Ev3Display.restoreOriginalScreen();
   }
 }
