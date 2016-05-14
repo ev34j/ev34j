@@ -1,6 +1,5 @@
 package com.ev34j.mindstorm;
 
-import com.ev34j.core.utils.Delay;
 import com.ev34j.mindstorm.buttons.Ev3Buttons;
 import com.ev34j.mindstorm.motor.LargeMotor;
 import com.ev34j.mindstorm.sensor.Ev3ColorSensor;
@@ -8,6 +7,7 @@ import com.ev34j.mindstorm.sensor.Ev3InfraredSensor;
 import com.ev34j.mindstorm.sensor.Ev3TouchSensor;
 import com.ev34j.mindstorm.sensor.NxtUltrasonicSensor;
 import com.ev34j.mindstorm.sensor.NxtV2ColorSensor;
+import com.ev34j.mindstorm.utils.Wait;
 
 import static java.lang.String.format;
 
@@ -35,13 +35,13 @@ public class Ev3Test {
     final Ev3InfraredSensor ir = new Ev3InfraredSensor("2");
     for (int i = 0; i < 100; i++) {
       System.out.println(format("IR: %s", ir.getDistancePercent()));
-      Delay.millis(100);
+      Wait.millis(100);
     }
 
     final NxtUltrasonicSensor us = new NxtUltrasonicSensor("2");
     for (int i = 0; i < 100; i++) {
       System.out.println(format("US: %s", us.getDistanceInches()));
-      Delay.millis(100);
+      Wait.millis(100);
     }
 
   }

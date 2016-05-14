@@ -11,36 +11,45 @@ public class Ev3Sound {
 
   private Ev3Sound() {}
 
-  public static void beep() { Sound.getInstance().beep(); }
-
-  public static void playTone(final int frequency, final int duration) {
-    Sound.getInstance().playTone(frequency, duration, getVolume());
+  public static void beep(final int secs, final int volume) {
+    setVolume(volume);
+    Sound.getInstance().beep(secs * 1000);
   }
 
-  public static void setVolume(final int volume) { Sound.getInstance().setVolume(volume); }
+  public static void playTone(final int frequency, final int secs, final int volume) {
+    setVolume(volume);
+    Sound.getInstance().playTone(frequency, secs * 1000);
+  }
 
-  public static int getVolume() { return Sound.getInstance().getVolume(); }
+  public static void playNote(final Note note, final int secs, final int volume) {
+    setVolume(volume);
+    Sound.getInstance().playTone(note.getFrequency(), secs * 1000);
+  }
 
-  public static void sayAsEnglish(final String words) {
+  private static void setVolume(final int volume) { Sound.getInstance().setVolume(volume); }
+
+  private static int getVolume() { return Sound.getInstance().getVolume(); }
+
+  public static void sayAsEnglish(final String words, final int volume) {
     if (ESPEAK_REF.get() == null)
       ESPEAK_REF.compareAndSet(null, new Espeak());
 
     final Espeak espeak = ESPEAK_REF.get();
     espeak.setVoice("en");
-    espeak.setVolume(getVolume());
+    espeak.setVolume(volume);
     espeak.setSpeedReading(105);
     espeak.setPitch(60);
     espeak.setMessage(words);
     espeak.say();
   }
 
-  public static void sayAsSpanish(final String words) {
+  public static void sayAsSpanish(final String words, final int volume) {
     if (ESPEAK_REF.get() == null)
       ESPEAK_REF.compareAndSet(null, new Espeak());
 
     final Espeak espeak = ESPEAK_REF.get();
     espeak.setVoice("es");
-    espeak.setVolume(getVolume());
+    espeak.setVolume(volume);
     espeak.setSpeedReading(200);
     espeak.setPitch(50);
     espeak.setMessage(words);

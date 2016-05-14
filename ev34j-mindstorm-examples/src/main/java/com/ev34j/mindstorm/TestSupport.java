@@ -1,10 +1,10 @@
 package com.ev34j.mindstorm;
 
 import com.ev34j.core.battery.Battery;
-import com.ev34j.core.utils.Delay;
 import com.ev34j.mindstorm.motor.AbstractMotor;
 import com.ev34j.mindstorm.sensor.AbstractColorSensor;
 import com.ev34j.mindstorm.sensor.AbstractTouchSensor;
+import com.ev34j.mindstorm.utils.Wait;
 
 import static java.lang.String.format;
 
@@ -30,7 +30,7 @@ public class TestSupport {
 
     for (int i = 0; i < 20; i++) {
       System.out.printf("%sPressed\n", !button.isPressed() ? "Not " : "");
-      Delay.millis(500);
+      Wait.millis(500);
     }
   }
 
@@ -38,22 +38,22 @@ public class TestSupport {
     final int iterations = 20;
     for (int i = 0; i < iterations; i++) {
       System.out.println(format("Color ID: %s", cs.getColorId()));
-      Delay.millis(500);
+      Wait.millis(500);
     }
 
     for (int i = 0; i < iterations; i++) {
       System.out.println(format("Reflected light: %d", cs.getReflectedLight()));
-      Delay.millis(500);
+      Wait.millis(500);
     }
 
     for (int i = 0; i < iterations; i++) {
       System.out.println(format("RGB: %s", cs.getRgb()));
-      Delay.millis(500);
+      Wait.millis(500);
     }
 
     for (int i = 0; i < iterations; i++) {
       System.out.println(format("Ambient light: %d", cs.getAmbientLight()));
-      Delay.millis(500);
+      Wait.millis(500);
     }
   }
 
@@ -61,43 +61,43 @@ public class TestSupport {
 
     System.out.printf("Power: %d\n", motor.getPower());
     motor.on(25);
-    Delay.secs(3);
+    Wait.secs(3);
     motor.off();
     System.out.printf("Position: %d\n", motor.getPosition());
 
     motor.onForSecs(3, -100);
-    Delay.secs(3);
+    Wait.secs(3);
     System.out.printf("Position: %d\n", motor.getPosition());
     motor.reset();
     System.out.printf("Reset: %d\n", motor.getPosition());
 
     /*
     motor.advanceBy(200, 100);
-    Delay.delaySecs(3);
+    Wait.delaySecs(3);
     System.out.printf("Position: %d\n", motor.getPosition());
 
     motor.advanceBy(-200, 100);
-    Delay.delaySecs(3);
+    Wait.delaySecs(3);
     System.out.printf("Position: %d\n", motor.getPosition());
     */
     motor.reset();
     System.out.printf("Reset for onForRotations(): %d\n", motor.getPosition());
     motor.onForRotations(3, 100);
-    Delay.secs(3);
+    Wait.secs(3);
     System.out.printf("Position: %d\n", motor.getPosition());
 
     /*
     motor.reset();
     System.out.printf("Reset for advanceTo(): %d\n", motor.getPosition());
     motor.advanceTo(-200, 50);
-    Delay.delaySecs(3);
+    Wait.delaySecs(3);
     System.out.printf("Position: %d\n", motor.getPosition());
     */
 
     motor.reset();
     System.out.printf("Reset for advanceTo(): %d\n", motor.getPosition());
     motor.onForDegrees(360, 75);
-    Delay.secs(3);
+    Wait.secs(3);
     System.out.printf("Position: %d\n", motor.getPosition());
 
 /*
@@ -106,7 +106,7 @@ public class TestSupport {
     motor.variableOn(-100);
     for (int i = -100; i < 100; i++) {
       motor.setVariablePower(i);
-      Delay.delayMillis(100);
+      Wait.delayMillis(100);
     }
     motor.off();
     System.out.printf("Position: %d\n", motor.getPosition());
@@ -121,7 +121,7 @@ public class TestSupport {
         currVal = tmp;
         System.out.printf("Position: %d\n", currVal);
       }
-      Delay.millis(500);
+      Wait.millis(500);
     }
   }
 }

@@ -27,7 +27,7 @@ public class Espeak {
   public void setFilePath(final String filePath) { this.filePath = filePath; }
 
   private String getCommand() {
-    final StringBuilder sb = new StringBuilder("espeak ");
+    final StringBuilder sb = new StringBuilder("/usr/bin/espeak ");
 
     if (this.voice != null)
       sb.append(format(" -v %s", this.voice));
@@ -48,13 +48,13 @@ public class Espeak {
       sb.append(format(" -f \"%s\"", this.filePath));
 
     sb.append(" | aplay");
+
     return sb.toString();
   }
 
   //espeak -ves -a 200 -s 200 -p 50  --stdout -f quijote.txt | aplay
   //espeak -ves --stdout "soy un robot bueno" | aplay
   public void say() {
-    final String[] cmd = {"/bin/sh", "-c", this.getCommand()};
-    Shell.execute(cmd);
+    Shell.execute(this.getCommand());
   }
 }

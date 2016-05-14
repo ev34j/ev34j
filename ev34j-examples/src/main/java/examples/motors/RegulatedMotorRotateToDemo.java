@@ -23,13 +23,13 @@ public class RegulatedMotorRotateToDemo {
     currentDegrees += degreesToTurn;
     System.out.println(currentDegrees);
     mA.rotateTo(currentDegrees);
-    sound.beep();
+    sound.beep(500);
     Delay.millis(1000);
     System.out.println(mA.getTachoCount());
     currentDegrees += degreesToTurn;
     System.out.println(currentDegrees);
     mA.rotateTo(currentDegrees);
-    sound.beep();
+    sound.beep(500);
     Delay.millis(1000);
         
         /*

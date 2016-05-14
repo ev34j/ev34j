@@ -18,22 +18,22 @@ public class RegulatedMotorRotateDemo {
     final LargeRegulatedMotor mA = new LargeRegulatedMotor(MotorPort.A);
     mA.setSpeed(100);
 
-    sound.beep();
+    sound.beep(500);
     System.out.println(mA.getTachoCount());
     mA.rotate(degreesToTurn);
-    sound.beep();
+    sound.beep(500);
     Delay.millis(1000);
     System.out.println(mA.getTachoCount());
     mA.rotate(degreesToTurn);
-    sound.beep();
+    sound.beep(500);
     Delay.millis(1000);
     System.out.println(mA.getTachoCount());
     mA.rotate(degreesToTurn);
-    sound.beep();
+    sound.beep(500);
     Delay.millis(1000);
     System.out.println(mA.getTachoCount());
     mA.rotate(degreesToTurn);
-    sound.beep();
+    sound.beep(500);
     Delay.millis(1000);
     System.out.println(mA.getTachoCount());
     System.out.println(Battery.getInstance().getVoltage());

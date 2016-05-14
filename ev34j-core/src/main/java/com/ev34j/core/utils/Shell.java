@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 public class Shell {
 
   public static String execute(final String command) {
-    return execute(new String[] {command});
+    return execute(new String[] {"/bin/sh", "-c", command});
   }
 
   public static String execute(final String[] command) {

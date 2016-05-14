@@ -27,15 +27,17 @@ public class SoundDemo {
     File file = new File(filePath);
     sound.playSample(file);
 
-    sound.beep();
+    sound.beep(500);
 
     Delay.millis(ONE_SECOND);
 
     for (int i = FREQ1; i <= FREQ2; i += variation) {
-      sound.playTone(i, 500, 100);
+      sound.playTone(i, 500);
+      Delay.millis(500);
     }
 
     sound.playTone(300, 500);
+    Delay.millis(500);
 
     System.exit(0);
   }

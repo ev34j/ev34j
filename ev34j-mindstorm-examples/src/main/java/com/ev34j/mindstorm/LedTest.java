@@ -1,9 +1,9 @@
 package com.ev34j.mindstorm;
 
-import com.ev34j.core.utils.Delay;
 import com.ev34j.mindstorm.leds.Ev3StatusLight;
 import com.ev34j.mindstorm.leds.Ev3StatusLights;
 import com.ev34j.mindstorm.sound.Ev3Sound;
+import com.ev34j.mindstorm.utils.Wait;
 
 public class LedTest {
 
@@ -12,34 +12,25 @@ public class LedTest {
     Ev3StatusLight left = Ev3StatusLights.left();
     Ev3StatusLight right = Ev3StatusLights.right();
 
-    Ev3Sound.setVolume(100);
-    Ev3Sound.sayAsEnglish("Volume is: " + Ev3Sound.getVolume());
-
-    Ev3Sound.sayAsEnglish("Red");
+    Ev3Sound.sayAsEnglish("Red", 100);
     left.red();
     right.red();
-    Delay.secs(2);
+    Wait.secs(2);
 
-    Ev3Sound.setVolume(25);
-    Ev3Sound.sayAsEnglish("Volume is: " + Ev3Sound.getVolume());
-    Ev3Sound.sayAsEnglish("Green");
+    Ev3Sound.sayAsEnglish("Green", 25);
     left.green();
     right.green();
-    Delay.secs(2);
+    Wait.secs(2);
 
-    Ev3Sound.setVolume(50);
-    Ev3Sound.sayAsEnglish("Volume is: " + Ev3Sound.getVolume());
-    Ev3Sound.sayAsEnglish("Orange");
+    Ev3Sound.sayAsEnglish("Orange", 50);
     left.orange();
     right.orange();
-    Delay.secs(2);
+    Wait.secs(2);
 
-    Ev3Sound.setVolume(100);
-    Ev3Sound.sayAsEnglish("Volume is: " + Ev3Sound.getVolume());
-    Ev3Sound.sayAsEnglish("Off");
+    Ev3Sound.sayAsEnglish("Off", 100);
     left.off();
     right.off();
-    Delay.secs(2);
+    Wait.secs(2);
   }
 
 }

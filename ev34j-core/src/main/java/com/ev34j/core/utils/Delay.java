@@ -7,9 +7,7 @@ package com.ev34j.core.utils;
  */
 public class Delay {
 
-  public static void secs(long period) {
-    millis(period * 1000);
-  }
+  public static void secs(long period) { millis(period * 1000); }
 
   /**
    * Wait for the specified number of milliseconds.
@@ -18,11 +16,11 @@ public class Delay {
    *
    * @param period time to wait in ms
    */
-  public static void millis(long period) {
+  public static void millis(final long period) {
     if (period <= 0)
       return;
 
-    long end = System.currentTimeMillis() + period;
+    final long start = System.currentTimeMillis();
     boolean interrupted = false;
     do {
       try {
@@ -31,8 +29,7 @@ public class Delay {
       catch (InterruptedException ie) {
         interrupted = true;
       }
-      period = end - System.currentTimeMillis();
-    } while (period > 0);
+    } while (System.currentTimeMillis() - start <= 0);
 
     if (interrupted)
       Thread.currentThread().interrupt();
