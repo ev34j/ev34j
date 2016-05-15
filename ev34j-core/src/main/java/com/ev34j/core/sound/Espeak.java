@@ -14,17 +14,35 @@ public class Espeak {
   private String message      = null;
   private String filePath     = null;
 
-  public void setVoice(final String voice) { this.voice = voice; }
+  public Espeak setVoice(final String voice) {
+    this.voice = voice;
+    return this;
+  }
 
-  public void setVolume(final int volume) { this.volume = volume; }
+  public Espeak setVolume(final int volume) {
+    this.volume = volume;
+    return this;
+  }
 
-  public void setSpeedReading(final int speed) { this.speedReading = speed; }
+  public Espeak setSpeedReading(final int speed) {
+    this.speedReading = speed;
+    return this;
+  }
 
-  public void setPitch(final int pitch) { this.pitch = pitch; }
+  public Espeak setPitch(final int pitch) {
+    this.pitch = pitch;
+    return this;
+  }
 
-  public void setMessage(final String message) { this.message = message; }
+  public Espeak setMessage(final String message) {
+    this.message = message;
+    return this;
+  }
 
-  public void setFilePath(final String filePath) { this.filePath = filePath; }
+  public Espeak setFilePath(final String filePath) {
+    this.filePath = filePath;
+    return this;
+  }
 
   private String getCommand() {
     final StringBuilder sb = new StringBuilder("/usr/bin/espeak ");
@@ -54,7 +72,8 @@ public class Espeak {
 
   //espeak -ves -a 200 -s 200 -p 50  --stdout -f quijote.txt | aplay
   //espeak -ves --stdout "soy un robot bueno" | aplay
-  public void say() {
+  public Espeak say() {
     Shell.execute(this.getCommand());
+    return this;
   }
 }

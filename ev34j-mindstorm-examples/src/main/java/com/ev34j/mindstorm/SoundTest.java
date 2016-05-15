@@ -8,9 +8,7 @@ public class SoundTest {
 
   public static void main(String[] args) {
 
-    Ev3Sound.sayAsEnglish("I am a LEGO robot", 100);
-    Wait.secs(1);
-    Ev3Sound.sayAsSpanish("Soy un robot LEGO", 100);
+    Ev3Sound.say("I am a LEGO robot", 100);
     Wait.secs(1);
     for (Note note : Note.values())
       Ev3Sound.playNote(note, 1, 100);

@@ -21,33 +21,23 @@ public class Platform {
   private static final Logger                        LOGGER   = Logger.getLogger(Platform.class.getName());
   private static final AtomicReference<PlatformType> PLATFORM = new AtomicReference<>(null);
 
-  /**
-   * This method returns the platform
-   *
-   * @return
-   * @throws RuntimeException
-   */
   public static PlatformType getPlatform() {
-    // Double Latch
-    if (PLATFORM.get() == null) {
-      synchronized (PLATFORM) {
-        if (PLATFORM.get() == null) {
-          for (final PlatformType type : PlatformType.values()) {
-            final String dirName = format("%s/%s", POWER_SUPPLY.getPath(), type.getBattery());
-            final File f = new File(dirName);
-            if (f.exists() && f.isDirectory()) {
-              LOGGER.fine(format("Detected the platform: %s", type.getType()));
-              PLATFORM.set(type);
-              break;
-            }
-          }
-        }
+    if (PLATFORM.get() == null)
+      PLATFORM.compareAndSet(null, lookupType());
+    return PLATFORM.get();
+  }
+
+  private static PlatformType lookupType() {
+    for (final PlatformType type : PlatformType.values()) {
+      final String dirName = format("%s/%s", POWER_SUPPLY.getPath(), type.getBattery());
+      final File f = new File(dirName);
+      if (f.exists() && f.isDirectory()) {
+        LOGGER.fine(format("Detected the platform: %s", type.name()));
+        return type;
       }
     }
-
-    if (PLATFORM.get() == null)
-      throw new RuntimeException("Platform not supported");
-    return PLATFORM.get();
+    LOGGER.fine("Unknown platform");
+    return PlatformType.UNKNOWN;
   }
 
   public static boolean isRasPiDevice() { return isBrickPi() || isPiStorm(); }
@@ -57,4 +47,6 @@ public class Platform {
   public static boolean isBrickPi() { return getPlatform() == PlatformType.BRICKPI; }
 
   public static boolean isPiStorm() { return getPlatform() == PlatformType.PISTORMS; }
+
+  public static boolean isUnknown() { return getPlatform() == PlatformType.UNKNOWN; }
 }

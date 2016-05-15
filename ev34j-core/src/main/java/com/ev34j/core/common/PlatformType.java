@@ -2,19 +2,16 @@ package com.ev34j.core.common;
 
 public enum PlatformType {
 
-  EV3BRICK("EV3BRICK", "legoev3-battery"),
-  PISTORMS("PISTORMS", "pistorm-battery"),
-  BRICKPI("BRICKPI", "brickpi-battery");
+  EV3BRICK("legoev3-battery"),
+  PISTORMS("pistorm-battery"),
+  BRICKPI("brickpi-battery"),
+  UNKNOWN("none");
 
-  private final String type;
   private final String battery;
 
-  PlatformType(final String type, final String battery) {
-    this.type = type;
+  PlatformType(final String battery) {
     this.battery = battery;
   }
-
-  public String getType() { return this.type; }
 
   public String getBattery() { return this.battery; }
 }

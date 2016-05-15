@@ -12,22 +12,22 @@ public class LedTest {
     Ev3StatusLight left = Ev3StatusLights.left();
     Ev3StatusLight right = Ev3StatusLights.right();
 
-    Ev3Sound.sayAsEnglish("Red", 100);
+    Ev3Sound.say("Red", 100);
     left.red();
     right.red();
     Wait.secs(2);
 
-    Ev3Sound.sayAsEnglish("Green", 25);
+    Ev3Sound.say("Green", 25);
     left.green();
     right.green();
     Wait.secs(2);
 
-    Ev3Sound.sayAsEnglish("Orange", 50);
+    Ev3Sound.say("Orange", 50);
     left.orange();
     right.orange();
     Wait.secs(2);
 
-    Ev3Sound.sayAsEnglish("Off", 100);
+    Ev3Sound.say("Off", 100);
     left.off();
     right.off();
     Wait.secs(2);

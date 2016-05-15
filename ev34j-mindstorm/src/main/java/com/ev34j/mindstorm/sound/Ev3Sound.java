@@ -30,29 +30,31 @@ public class Ev3Sound {
 
   private static int getVolume() { return Sound.getInstance().getVolume(); }
 
-  public static void sayAsEnglish(final String words, final int volume) {
-    if (ESPEAK_REF.get() == null)
-      ESPEAK_REF.compareAndSet(null, new Espeak());
-
-    final Espeak espeak = ESPEAK_REF.get();
-    espeak.setVoice("en");
-    espeak.setVolume(volume);
-    espeak.setSpeedReading(105);
-    espeak.setPitch(60);
-    espeak.setMessage(words);
-    espeak.say();
+  public static void say(final String words, final int volume) {
+    sayAsEnglish(words, volume);
   }
 
-  public static void sayAsSpanish(final String words, final int volume) {
+  private static Espeak getEspeak() {
     if (ESPEAK_REF.get() == null)
       ESPEAK_REF.compareAndSet(null, new Espeak());
+    return ESPEAK_REF.get();
+  }
 
-    final Espeak espeak = ESPEAK_REF.get();
-    espeak.setVoice("es");
-    espeak.setVolume(volume);
-    espeak.setSpeedReading(200);
-    espeak.setPitch(50);
-    espeak.setMessage(words);
-    espeak.say();
+  private static void sayAsEnglish(final String words, final int volume) {
+    getEspeak().setVoice("en")
+               .setVolume(volume)
+               .setSpeedReading(105)
+               .setPitch(60)
+               .setMessage(words)
+               .say();
+  }
+
+  private static void sayAsSpanish(final String words, final int volume) {
+    getEspeak().setVoice("es")
+               .setVolume(volume)
+               .setSpeedReading(200)
+               .setPitch(50)
+               .setMessage(words)
+               .say();
   }
 }
