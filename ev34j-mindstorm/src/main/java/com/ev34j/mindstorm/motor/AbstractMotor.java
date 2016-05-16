@@ -103,7 +103,10 @@ public abstract class AbstractMotor {
     this.motor.runForever();
   }
 
-  public void off() { this.motor.stop(); }
+  public void off() {
+    this.motor.stop();
+    this.setPower(0);
+  }
 
   public AbstractMotor onForSecs(final int secs, final int percentPower) {
     validateSeconds(secs);

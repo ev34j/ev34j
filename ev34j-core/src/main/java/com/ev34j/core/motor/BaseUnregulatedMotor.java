@@ -64,9 +64,6 @@ public class BaseUnregulatedMotor
       int value = Math.abs(this.power) * -1;
       this.setAttribute(VARIABLE_SPEED_VAL, value);
     }
-    //TODO: Learn to use this attribute
-    //final String attribute1 = "inversed";
-    //final String value1 = "polarity";
     this.command(RUN_FOREVER);
   }
 
