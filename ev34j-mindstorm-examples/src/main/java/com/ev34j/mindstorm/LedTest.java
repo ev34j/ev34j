@@ -15,22 +15,22 @@ public class LedTest {
     Ev3Sound.say("Red", 100);
     left.red();
     right.red();
-    Wait.secs(2);
+    Wait.forSecs(2);
 
     Ev3Sound.say("Green", 25);
     left.green();
     right.green();
-    Wait.secs(2);
+    Wait.forSecs(2);
 
     Ev3Sound.say("Orange", 50);
     left.orange();
     right.orange();
-    Wait.secs(2);
+    Wait.forSecs(2);
 
     Ev3Sound.say("Off", 100);
     left.off();
     right.off();
-    Wait.secs(2);
+    Wait.forSecs(2);
   }
 
 }

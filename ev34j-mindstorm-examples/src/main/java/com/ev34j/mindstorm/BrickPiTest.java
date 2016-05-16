@@ -23,13 +23,13 @@ public class BrickPiTest {
     final Ev3InfraredSensor ir = new Ev3InfraredSensor("S3");
     for (int i = 0; i < 100; i++) {
       System.out.println(format("IR: %s", ir.getDistancePercent()));
-      Wait.millis(100);
+      Wait.forMillis(100);
     }
 
     final NxtUltrasonicSensor us = new NxtUltrasonicSensor("S4");
     for (int i = 0; i < 100; i++) {
       System.out.println(format("US: %s", us.getDistanceInches()));
-      Wait.millis(100);
+      Wait.forMillis(100);
     }
   }
 

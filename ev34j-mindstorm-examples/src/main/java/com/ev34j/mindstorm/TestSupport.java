@@ -30,7 +30,7 @@ public class TestSupport {
 
     for (int i = 0; i < 20; i++) {
       System.out.printf("%sPressed\n", !button.isPressed() ? "Not " : "");
-      Wait.millis(500);
+      Wait.forMillis(500);
     }
   }
 
@@ -38,22 +38,22 @@ public class TestSupport {
     final int iterations = 20;
     for (int i = 0; i < iterations; i++) {
       System.out.println(format("Color ID: %s", cs.getColorId()));
-      Wait.millis(500);
+      Wait.forMillis(500);
     }
 
     for (int i = 0; i < iterations; i++) {
       System.out.println(format("Reflected light: %d", cs.getReflectedLight()));
-      Wait.millis(500);
+      Wait.forMillis(500);
     }
 
     for (int i = 0; i < iterations; i++) {
       System.out.println(format("RGB: %s", cs.getRgb()));
-      Wait.millis(500);
+      Wait.forMillis(500);
     }
 
     for (int i = 0; i < iterations; i++) {
       System.out.println(format("Ambient light: %d", cs.getAmbientLight()));
-      Wait.millis(500);
+      Wait.forMillis(500);
     }
   }
 
@@ -61,12 +61,12 @@ public class TestSupport {
 
     System.out.printf("Power: %d\n", motor.getPower());
     motor.on(25);
-    Wait.secs(3);
+    Wait.forSecs(3);
     motor.off();
     System.out.printf("Position: %d\n", motor.getPosition());
 
     motor.onForSecs(3, -100);
-    Wait.secs(3);
+    Wait.forSecs(3);
     System.out.printf("Position: %d\n", motor.getPosition());
     motor.reset();
     System.out.printf("Reset: %d\n", motor.getPosition());
@@ -83,7 +83,7 @@ public class TestSupport {
     motor.reset();
     System.out.printf("Reset for onForRotations(): %d\n", motor.getPosition());
     motor.onForRotations(3, 100);
-    Wait.secs(3);
+    Wait.forSecs(3);
     System.out.printf("Position: %d\n", motor.getPosition());
 
     /*
@@ -97,7 +97,7 @@ public class TestSupport {
     motor.reset();
     System.out.printf("Reset for advanceTo(): %d\n", motor.getPosition());
     motor.onForDegrees(360, 75);
-    Wait.secs(3);
+    Wait.forSecs(3);
     System.out.printf("Position: %d\n", motor.getPosition());
 
 /*
@@ -121,7 +121,7 @@ public class TestSupport {
         currVal = tmp;
         System.out.printf("Position: %d\n", currVal);
       }
-      Wait.millis(500);
+      Wait.forMillis(500);
     }
   }
 }
