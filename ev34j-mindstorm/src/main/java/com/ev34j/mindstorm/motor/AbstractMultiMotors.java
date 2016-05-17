@@ -19,6 +19,8 @@ public abstract class AbstractMultiMotors {
   protected LargeRegulatedMotor getMotor2() { return this.motor2; }
 
   public void off() {
+    this.motor1.setSpeed(0);
+    this.motor2.setSpeed(0);
     this.motor1.stop();
     this.motor2.stop();
   }

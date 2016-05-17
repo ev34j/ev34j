@@ -104,8 +104,8 @@ public abstract class AbstractMotor {
   }
 
   public void off() {
-    this.motor.stop();
     this.setPower(0);
+    this.motor.stop();
   }
 
   public AbstractMotor onForSecs(final int secs, final int percentPower) {
