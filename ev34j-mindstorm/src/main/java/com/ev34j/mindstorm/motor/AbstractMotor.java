@@ -64,6 +64,12 @@ public abstract class AbstractMotor {
 
   public int getPosition() { return (int) this.motor.getPosition(); }
 
+  public int getPower() {
+    return (((this.motor.getSpeed() * 100) / this.motor.getMaxSpeed())) * (this.motor.isForward() ? 1 : -1);
+  }
+
+  public void reset() { this.motor.reset(); }
+
   public boolean isRunning() { return this.motor.isMoving(); }
 
   public boolean isStalled() { return this.motor.isStalled(); }
@@ -79,10 +85,6 @@ public abstract class AbstractMotor {
   public void enableHoldStop() { this.motor.setHoldStop(); }
 
   public boolean isHoldStopEnabled() { return this.motor.isHoldStop(); }
-
-  public void reset() { this.motor.reset(); }
-
-  public int getPower() { return ((this.motor.getSpeed() * 100) / this.motor.getMaxSpeed()); }
 
   /* Keep this hidden for now */
   private void setVariablePower(final int percentPower) {

@@ -1,5 +1,5 @@
--windowtitle 'Java EV3 API (v0.1.6 )'
--doctitle 'Java EV3 API (v0.1.6)'
--header '<b>Java EV3 API</b><br><font size="-1">v0.1.6</font>'
+-windowtitle 'Java EV3 API (v0.1.7 )'
+-doctitle 'Java EV3 API (v0.1.7)'
+-header '<b>Java EV3 API</b><br><font size="-1">v0.1.7</font>'
 -d ./etc/javadocs/output
 -subpackages com.ev34j.mindstorm
