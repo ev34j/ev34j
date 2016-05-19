@@ -10,7 +10,7 @@ import java.util.List;
 import static com.ev34j.core.common.AttributeName.MODE;
 import static com.ev34j.core.common.AttributeName.POWER;
 import static com.ev34j.core.common.AttributeName.STATE;
-import static com.ev34j.core.common.AttributeName.VARIABLE_SPEED_VAL;
+import static com.ev34j.core.common.AttributeName.VARIABLE_SPEED;
 import static com.ev34j.core.common.AttributeValue.BRAKE;
 import static com.ev34j.core.common.AttributeValue.RUNNING_STATE;
 import static com.ev34j.core.common.AttributeValue.RUN_FOREVER;
@@ -40,7 +40,7 @@ public class BaseUnregulatedMotor
 
   public void setPower(int power) {
     this.power = power;
-    this.setAttribute(VARIABLE_SPEED_VAL, this.power);
+    this.setAttribute(VARIABLE_SPEED, this.power);
   }
 
   public int getPower() { return this.getIntegerAttribute(POWER); }
@@ -49,10 +49,8 @@ public class BaseUnregulatedMotor
    * Causes motor to rotate forward.
    */
   public void forward() {
-    if (this.power != 0) {
-      int value = Math.abs(this.power);
-      this.setAttribute(VARIABLE_SPEED_VAL, value);
-    }
+    if (this.power != 0)
+      this.setAttribute(VARIABLE_SPEED, Math.abs(this.power));
     this.command(RUN_FOREVER);
   }
 
@@ -60,10 +58,8 @@ public class BaseUnregulatedMotor
    * Causes motor to rotate backwards.
    */
   public void backward() {
-    if (this.power != 0) {
-      int value = Math.abs(this.power) * -1;
-      this.setAttribute(VARIABLE_SPEED_VAL, value);
-    }
+    if (this.power != 0)
+      this.setAttribute(VARIABLE_SPEED, Math.abs(this.power) * -1);
     this.command(RUN_FOREVER);
   }
 

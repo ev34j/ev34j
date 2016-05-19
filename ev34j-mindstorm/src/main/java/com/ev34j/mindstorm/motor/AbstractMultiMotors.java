@@ -31,13 +31,9 @@ public abstract class AbstractMultiMotors {
     this.motor2.reset();
   }
 
-  public int getPower1() {
-    return ((this.motor1.getSpeed() * 100) / this.motor1.getMaxSpeed()) * (this.motor1.isForward() ? 1 : -1);
-  }
+  public int getPower1() { return (this.motor1.getSpeed() * 100) / this.motor1.getMaxSpeed(); }
 
-  public int getPower2() {
-    return ((this.motor2.getSpeed() * 100) / this.motor2.getMaxSpeed()) * (this.motor2.isForward() ? 1 : -1);
-  }
+  public int getPower2() { return (this.motor2.getSpeed() * 100) / this.motor2.getMaxSpeed(); }
 
   public int getPosition1() { return (int) this.motor1.getPosition(); }
 

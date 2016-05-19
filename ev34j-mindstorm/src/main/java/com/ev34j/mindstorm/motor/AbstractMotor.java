@@ -64,9 +64,7 @@ public abstract class AbstractMotor {
 
   public int getPosition() { return (int) this.motor.getPosition(); }
 
-  public int getPower() {
-    return (((this.motor.getSpeed() * 100) / this.motor.getMaxSpeed())) * (this.motor.isForward() ? 1 : -1);
-  }
+  public int getPower() { return (this.motor.getSpeed() * 100) / this.motor.getMaxSpeed(); }
 
   public void reset() { this.motor.reset(); }
 

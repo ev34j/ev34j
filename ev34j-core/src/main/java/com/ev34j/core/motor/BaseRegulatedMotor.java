@@ -8,14 +8,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.ev34j.core.common.AttributeName.COUNT_PER_ROT;
 import static com.ev34j.core.common.AttributeName.CURRENT_POSITION;
-import static com.ev34j.core.common.AttributeName.FIXED_SPEED_VAL;
+import static com.ev34j.core.common.AttributeName.FIXED_SPEED;
 import static com.ev34j.core.common.AttributeName.MAX_SPEED;
 import static com.ev34j.core.common.AttributeName.POLARITY;
 import static com.ev34j.core.common.AttributeName.POSITION_VAL;
 import static com.ev34j.core.common.AttributeName.STATE;
 import static com.ev34j.core.common.AttributeName.STOP_ACTION;
 import static com.ev34j.core.common.AttributeName.TIME_TO_RUN_VAL;
-import static com.ev34j.core.common.AttributeName.VARIABLE_SPEED_VAL;
+import static com.ev34j.core.common.AttributeName.VARIABLE_SPEED;
 import static com.ev34j.core.common.AttributeValue.BRAKE;
 import static com.ev34j.core.common.AttributeValue.COAST;
 import static com.ev34j.core.common.AttributeValue.HOLD;
@@ -82,12 +82,8 @@ public abstract class BaseRegulatedMotor
     // PRA this.setAttribute(SPEED_REGULATION, SPEED_REGULATION_ON);
   }
 
-  private AttributeName getSpeedAttrib() { return this.fixedSpeed.get() ? FIXED_SPEED_VAL : VARIABLE_SPEED_VAL; }
+  private AttributeName getSpeedAttribute() { return this.fixedSpeed.get() ? FIXED_SPEED : VARIABLE_SPEED; }
 
-  /**
-   * @return the current tachometer count.
-   * @see lejos.robotics.RegulatedMotor#getTachoCount()
-   */
   public int getTachoCount() { return this.getIntegerAttribute(POSITION_VAL); }
 
   /**
@@ -134,7 +130,7 @@ public abstract class BaseRegulatedMotor
 
   public int getMaxSpeed() {
     if (this.maxSpeed.get() == -1)
-      this.maxSpeed.compareAndSet(-1, this.getIntegerAttribute(MAX_SPEED));
+      this.maxSpeed.compareAndSet(-1, Math.abs(this.getIntegerAttribute(MAX_SPEED)));
     return this.maxSpeed.get();
   }
 
@@ -165,15 +161,14 @@ public abstract class BaseRegulatedMotor
   public void setSpeed(int speed) {
     this.speed = speed;
     this.fixedSpeed.set(true);
-    this.setForward(this.speed >= 0);
-    this.setAttribute(this.getSpeedAttrib(), Math.abs(this.speed));
+    this.setAttribute(this.getSpeedAttribute(), this.speed);
   }
 
-  public void setForward(final boolean forward) {
+  public void setForwardPolarity(final boolean forward) {
     this.setAttribute(POLARITY, forward ? NORMAL_POLARITY : INVERSED_POLARITY);
   }
 
-  public boolean isForward() {
+  public boolean isForwardPolarity() {
     final String polarity = this.getStringAttribute(POLARITY);
     return NORMAL_POLARITY.attribValue().equals(polarity);
   }
@@ -181,7 +176,7 @@ public abstract class BaseRegulatedMotor
   public void setVariableSpeed(int speed) {
     this.speed = speed;
     this.fixedSpeed.set(false);
-    this.setAttribute(this.getSpeedAttrib(), this.speed);
+    this.setAttribute(this.getSpeedAttribute(), this.speed);
   }
 
   public void reset() { this.command(RESET); }
@@ -239,7 +234,7 @@ public abstract class BaseRegulatedMotor
    *
    * @return the current target speed.
    */
-  public int getSpeed() { return this.getIntegerAttribute(this.getSpeedAttrib()); }
+  public int getSpeed() { return this.getIntegerAttribute(this.getSpeedAttribute()); }
 
   /**
    * Return the current velocity.
@@ -296,7 +291,7 @@ public abstract class BaseRegulatedMotor
    */
   public void forward() {
     if (this.speed != 0)
-      this.setAttribute(this.getSpeedAttrib(), Math.abs(this.speed));
+      this.setAttribute(this.getSpeedAttribute(), Math.abs(this.speed));
     this.command(RUN_FOREVER);
   }
 
@@ -305,7 +300,7 @@ public abstract class BaseRegulatedMotor
    */
   public void backward() {
     if (this.speed != 0)
-      this.setAttribute(this.getSpeedAttrib(), Math.abs(this.speed) * -1);
+      this.setAttribute(this.getSpeedAttribute(), Math.abs(this.speed) * -1);
     this.command(RUN_FOREVER);
   }
 

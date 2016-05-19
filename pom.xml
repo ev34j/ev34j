@@ -5,12 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.ev34j</groupId>
   <artifactId>ev34j</artifactId>
-  <version>0.1.8-SNAPSHOT</version>
+  <version>0.1.9-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
     <module>ev34j-core</module>
-    <module>ev34j-examples</module>
     <module>ev34j-mindstorm</module>
     <module>ev34j-mindstorm-examples</module>
   </modules>
