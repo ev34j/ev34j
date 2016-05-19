@@ -12,6 +12,7 @@ public abstract class AbstractMultiMotors {
   protected AbstractMultiMotors(final String portName1, final String portName2) {
     this.motor1 = new LargeRegulatedMotor(MotorPort.findByPort(portName1));
     this.motor2 = new LargeRegulatedMotor(MotorPort.findByPort(portName2));
+    this.reset();
   }
 
   protected LargeRegulatedMotor getMotor1() { return this.motor1; }
@@ -30,9 +31,13 @@ public abstract class AbstractMultiMotors {
     this.motor2.reset();
   }
 
-  public int getPower1() { return ((this.motor1.getSpeed() * 100) / this.motor1.getMaxSpeed()); }
+  public int getPower1() {
+    return ((this.motor1.getSpeed() * 100) / this.motor1.getMaxSpeed()) * (this.motor1.isForward() ? 1 : -1);
+  }
 
-  public int getPower2() { return ((this.motor2.getSpeed() * 100) / this.motor2.getMaxSpeed()); }
+  public int getPower2() {
+    return ((this.motor2.getSpeed() * 100) / this.motor2.getMaxSpeed()) * (this.motor2.isForward() ? 1 : -1);
+  }
 
   public int getPosition1() { return (int) this.motor1.getPosition(); }
 

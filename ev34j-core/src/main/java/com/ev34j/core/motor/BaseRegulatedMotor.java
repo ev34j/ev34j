@@ -165,8 +165,12 @@ public abstract class BaseRegulatedMotor
   public void setSpeed(int speed) {
     this.speed = speed;
     this.fixedSpeed.set(true);
-    this.setAttribute(POLARITY, this.speed >= 0 ? NORMAL_POLARITY : INVERSED_POLARITY);
+    this.setForward(this.speed >= 0);
     this.setAttribute(this.getSpeedAttrib(), Math.abs(this.speed));
+  }
+
+  public void setForward(final boolean forward) {
+    this.setAttribute(POLARITY, forward ? NORMAL_POLARITY : INVERSED_POLARITY);
   }
 
   public boolean isForward() {
