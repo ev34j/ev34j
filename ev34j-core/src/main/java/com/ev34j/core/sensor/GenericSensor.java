@@ -88,6 +88,7 @@ public abstract class GenericSensor
       // Set the values in lego-sensor -- the order here matters
       this.setAttribute(MODE, connnectionType.getType());
       this.setAttribute(SET_DEVICE, sensorType.getType());
+      Delay.millis(SWITCH_DELAY_MILLIS);
 
       // Make sure dir was created
       this.detectDevice(LEGO_SENSOR, deviceClass, sensorPort);
