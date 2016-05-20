@@ -6,6 +6,9 @@ public enum SensorSetting {
   NXT_TOUCH(ConnnectionType.NXT_ANALOG, SensorType.NXT_TOUCH),
   EV3_TOUCH(ConnnectionType.EV3_ANALOG, SensorType.EV3_TOUCH),
 
+  // Sound
+  NXT_SOUND(ConnnectionType.NXT_ANALOG, SensorType.NXT_SOUND),
+
   // Ultrasonic
   NXT_US(ConnnectionType.NXT_IC2, SensorType.NXT_US),
   EV3_US(ConnnectionType.EV3_UART, SensorType.EV3_US),

@@ -69,12 +69,8 @@ import static com.ev34j.core.sensor.SensorValue.VALUE0;
 public class UltrasonicSensor
     extends GenericSensor {
 
-  public UltrasonicSensor(final SensorPort sensorPort, final SensorSetting sensorSetting) {
-    this(UltrasonicSensor.class, sensorPort, sensorSetting);
-  }
-
   public UltrasonicSensor(final Class<?> deviceClass, final SensorPort sensorPort, final SensorSetting sensorSetting) {
-    super(deviceClass, sensorPort, sensorSetting.getConnnectionType(), sensorSetting.getSensorType());
+    super(deviceClass, sensorPort, sensorSetting.getConnnectionType(), sensorSetting.getSensorType(), false);
 
     // See: http://www.mindsensors.com/forum/topic/151_nxt-ultrasonic-sensor-in-pistorms
     if (Platform.isPiStorm())

@@ -4,6 +4,7 @@ import com.ev34j.core.common.AttributeName;
 import com.ev34j.core.common.Device;
 import com.ev34j.core.common.DeviceException;
 import com.ev34j.core.common.Platform;
+import com.ev34j.core.motor.PortType;
 import com.ev34j.core.utils.Delay;
 import com.ev34j.core.utils.Ev3DevFs;
 
@@ -64,34 +65,40 @@ public abstract class GenericSensor
    * Every device connected in a EV3 Brick with EV3Dev appears in /sys/class in a determinated category.
    * It is necessary to indicate the type and port.
    *
-   * @param sensorPort The port where is connected the sensor or the actuator.
+   * @param sensorPort       The port where is connected the sensor or the actuator.
+   * @param performPortSetup
    * @throws DeviceException
    */
   protected GenericSensor(final Class<?> deviceClass,
                           final SensorPort sensorPort,
                           final ConnnectionType connnectionType,
-                          final SensorType sensorType)
+                          final SensorType sensorType,
+                          final boolean performPortSetup)
       throws DeviceException {
     // EV3 detects the sensors automatically
-    if (Platform.isEv3Brick()) {
-      this.detectDevice(deviceClass, LEGO_SENSOR, sensorPort.getPortName(), sensorPort.getPortAddress());
+    if (Platform.isEv3Brick() && !performPortSetup) {
+      this.detectDevice(LEGO_SENSOR, deviceClass, sensorPort);
       LOGGER.fine(format("Detected sensor at %s", this.getDevicePath()));
     }
     else {
       // With Pi Boards, it is necessary to detect the sensors in 2 paths
-      this.detectDevice(deviceClass, LEGO_PORT, sensorPort.getPortName(), sensorPort.getPortAddress());
-
+      this.detectDevice(LEGO_PORT, deviceClass, sensorPort);
       LOGGER.fine(format("Detected sensor at %s", this.getDevicePath()));
 
-      // Create the dir in lego-sensor -- the order here seems to matter
+      // Set the values in lego-sensor -- the order here matters
       this.setAttribute(MODE, connnectionType.getType());
       this.setAttribute(SET_DEVICE, sensorType.getType());
 
       // Make sure dir was created
-      this.detectDevice(deviceClass, LEGO_SENSOR, sensorPort.getPortName(), sensorPort.getPortAddress());
+      this.detectDevice(LEGO_SENSOR, deviceClass, sensorPort);
 
       LOGGER.fine(format("Created sensor at %s", this.getDevicePath()));
     }
+  }
+
+  protected void detectDevice(final PortType portType, final Class<?> deviceClass, final SensorPort sensorPort) {
+    final File path = this.detectDevicePath(portType, deviceClass, sensorPort.getPortName(), sensorPort.getPortAddress());
+    this.setDevicePath(path);
   }
 
   /**

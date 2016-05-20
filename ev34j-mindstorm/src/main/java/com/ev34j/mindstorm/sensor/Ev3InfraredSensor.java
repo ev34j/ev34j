@@ -16,7 +16,8 @@ public class Ev3InfraredSensor
 
   public int getDistancePercent() {
     this.setSensorMode(this.getSensor().getDistanceMode())
-        .getSensorMode().fetchSample(this.getSamples(), 0);
+        .getSensorMode()
+        .fetchSample(this.getSamples(), 0);
     return (int) this.getSample(0);
   }
 }

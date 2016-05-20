@@ -20,6 +20,10 @@ public enum ModeType {
   // Infrared
   IR_DISTANCE("IR-PROX", false),
 
+  // Sound
+  SOUND_PRESSURE_FLAT("DB", false),
+  SOUND_PRESSURE_WEIGHTED("DBA", false),
+
   // Ultrasonic
   CONT_DISTANCE_CMS("US-DIST-CM", false),
   CONT_DISTANCE_INCHES("US-DIST-IN", false),

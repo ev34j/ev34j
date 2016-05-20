@@ -19,13 +19,15 @@ public class Ev3GyroSensor
 
   public int getAngleDegrees() {
     this.setSensorMode(this.getSensor().getAngleDegreesMode())
-        .getSensorMode().fetchSample(this.getSamples(), 0);
+        .getSensorMode()
+        .fetchSample(this.getSamples(), 0);
     return (int) this.getSample(0);
   }
 
   public int getRotationalSpeed() {
     this.setSensorMode(this.getSensor().getRotationalSpeedMode())
-        .getSensorMode().fetchSample(this.getSamples(), 0);
+        .getSensorMode()
+        .fetchSample(this.getSamples(), 0);
     return (int) this.getSample(0);
   }
 }

@@ -11,7 +11,7 @@ import com.ev34j.mindstorm.utils.Wait;
 
 import static java.lang.String.format;
 
-public class Ev3Test {
+public class Ev3SensorTest {
 
   public static void main(String[] args) {
 

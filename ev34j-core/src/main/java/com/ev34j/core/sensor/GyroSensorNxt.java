@@ -67,7 +67,7 @@ public class GyroSensorNxt
     extends GenericSensor {
 
   public GyroSensorNxt(final Class<?> deviceClass, final SensorPort sensorPort, final SensorSetting sensorSetting) {
-    super(deviceClass, sensorPort, sensorSetting.getConnnectionType(), sensorSetting.getSensorType());
+    super(deviceClass, sensorPort, sensorSetting.getConnnectionType(), sensorSetting.getSensorType(), false);
     assignModes(new AngularSpeedMode(this.getDevicePath()));
   }
 

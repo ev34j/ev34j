@@ -56,12 +56,8 @@ import static com.ev34j.core.sensor.SensorValue.VALUE0;
 public class InfraredSensor
     extends GenericSensor {
 
-  public InfraredSensor(final SensorPort sensorPort) {
-    this(InfraredSensor.class, sensorPort);
-  }
-
   public InfraredSensor(final Class<?> deviceClass, final SensorPort sensorPort) {
-    super(deviceClass, sensorPort, ConnnectionType.EV3_UART, SensorType.EV3_IR);
+    super(deviceClass, sensorPort, ConnnectionType.EV3_UART, SensorType.EV3_IR, false);
     this.assignModes(new DistanceMode(this.getDevicePath()));
   }
 

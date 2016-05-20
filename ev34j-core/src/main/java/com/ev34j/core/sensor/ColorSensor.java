@@ -96,14 +96,10 @@ public class ColorSensor
 
   private short[] raw = new short[3];
 
-  public ColorSensor(final SensorPort sensorPort, final SensorSetting sensorSetting) {
-    this(ColorSensor.class, sensorPort, sensorSetting);
-  }
-
   public ColorSensor(final Class<?> deviceClass, final SensorPort sensorPort, final SensorSetting sensorSetting) {
-    super(deviceClass, sensorPort, sensorSetting.getConnnectionType(), sensorSetting.getSensorType());
+    super(deviceClass, sensorPort, sensorSetting.getConnnectionType(), sensorSetting.getSensorType(), false);
     this.assignModes(new ColorIdMode(this.getDevicePath()),
-                     new RedMode(this.getDevicePath()),
+                     new ReflectedMode(this.getDevicePath()),
                      new RGBMode(this.getDevicePath()),
                      new AmbientMode(this.getDevicePath()));
   }
@@ -189,10 +185,10 @@ public class ColorSensor
    */
   public SensorMode getReflectedMode() { return this.getSensorMode(REFLECTED); }
 
-  private class RedMode
+  private class ReflectedMode
       extends SensorMode {
 
-    private RedMode(File devicePath) {
+    private ReflectedMode(File devicePath) {
       super(REFLECTED, devicePath, VALUE0);
     }
 

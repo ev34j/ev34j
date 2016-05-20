@@ -11,10 +11,10 @@ public abstract class AbstractTouchSensor
     extends AbstractSensor<TouchSensor> {
 
   protected AbstractTouchSensor(final Class<?> deviceClass, final String portName, final SensorSetting sensorSetting) {
-    super((new TouchSensor(deviceClass,
-                           SensorPort.findByPort(portName),
-                           sensorSetting.getConnnectionType(),
-                           sensorSetting.getSensorType())));
+    super(new TouchSensor(deviceClass,
+                          SensorPort.findByPort(portName),
+                          sensorSetting.getConnnectionType(),
+                          sensorSetting.getSensorType()));
   }
 
   public boolean isPressed() { return this.getSensor().isPressed(); }

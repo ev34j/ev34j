@@ -4,6 +4,7 @@ package com.ev34j.core.motor;
 import com.ev34j.core.common.AttributeValue;
 import com.ev34j.core.common.PlatformType;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,7 +36,8 @@ public class BaseUnregulatedMotor
     super(BaseUnregulatedMotor.class, LEGO_PORT, motorPort, SUPPORTED_PLATFORMS);
     this.setAttribute(MODE, AttributeValue.DC_MOTOR);
 
-    this.detectDevice(this.getClass(), DC_MOTOR, motorPort.getPortName(), motorPort.getPortAddress());
+    final File path = this.detectDevicePath(DC_MOTOR, this.getClass(), motorPort.getPortName(), motorPort.getPortAddress());
+    this.setDevicePath(path);
   }
 
   public void setPower(int power) {

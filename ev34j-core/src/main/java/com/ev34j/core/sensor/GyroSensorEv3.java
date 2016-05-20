@@ -67,12 +67,8 @@ import static com.ev34j.core.sensor.SensorValue.VALUE0;
 public class GyroSensorEv3
     extends GenericSensor {
 
-  public GyroSensorEv3(final SensorPort sensorPort, final SensorSetting sensorSetting) {
-    this(GyroSensorEv3.class, sensorPort, sensorSetting);
-  }
-
   public GyroSensorEv3(final Class<?> deviceClass, final SensorPort sensorPort, final SensorSetting sensorSetting) {
-    super(deviceClass, sensorPort, sensorSetting.getConnnectionType(), sensorSetting.getSensorType());
+    super(deviceClass, sensorPort, sensorSetting.getConnnectionType(), sensorSetting.getSensorType(), false);
     assignModes(new AngleDegreesMode(this.getDevicePath()),
                 new RotationalSpeedMode(this.getDevicePath()));
   }

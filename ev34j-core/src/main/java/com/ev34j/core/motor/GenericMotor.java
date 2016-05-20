@@ -7,6 +7,7 @@ import com.ev34j.core.common.DeviceNotSupportedException;
 import com.ev34j.core.common.Platform;
 import com.ev34j.core.common.PlatformType;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,7 +57,8 @@ public abstract class GenericMotor
       throws DeviceException, DeviceNotSupportedException {
     if (!supportedPlatforms.contains(Platform.getPlatform()))
       throw new DeviceNotSupportedException(this.getClass());
-    this.detectDevice(deviceClass, portType, motorPort.getPortName(), motorPort.getPortAddress());
+    final File path = this.detectDevicePath(portType, deviceClass, motorPort.getPortName(), motorPort.getPortAddress());
+    this.setDevicePath(path);
   }
 
   protected void command(final AttributeValue value) { this.setAttribute(COMMAND, value); }

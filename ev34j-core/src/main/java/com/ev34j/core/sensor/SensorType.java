@@ -1,6 +1,6 @@
 package com.ev34j.core.sensor;
 
-public enum SensorType {
+enum SensorType {
 
   EV3_TOUCH("lego-ev3-touch"),
   EV3_COLOR("lego-ev3-color"),
@@ -11,6 +11,7 @@ public enum SensorType {
   EV3_IR("lego-ev3-ir"),
   EV3_US("lego-ev3-us"),
   NXT_TOUCH("lego-nxt-touch"),
+  NXT_SOUND("lego-nxt-sound"),
   NXT_US("lego-nxt-us");
 
   private final String type;

@@ -46,22 +46,19 @@ public abstract class Device
 
   /**
    * This method matches a input with the internal position in EV3Dev.
-   *
-   * @param portType
+   *  @param portType
    * @param portAddress
    */
-  protected void detectDevice(final Class<?> deviceClass,
-                              final PortType portType,
-                              final String portName,
-                              final String portAddress) {
+  protected File detectDevicePath(final PortType portType,
+                                  final Class<?> deviceClass,
+                                  final String portName,
+                                  final String portAddress) {
     for (final File path : Ev3DevFs.getDevicePaths(portType)) {
       final String addressPath = format("%s/%s", path, ADDRESS);
-      final String val = Ev3DevFs.readString(addressPath);
+      final String addressVal = Ev3DevFs.readString(addressPath);
       // NXT Ultrasonic sensor address is in2:i2c1, whereas EV3 IR sensor address is just in2
-      if (val.startsWith(portAddress)) {
-        this.setDevicePath(path);
-        return;
-      }
+      if (addressVal.startsWith(portAddress))
+        return path;
     }
     throw new DeviceException(format("%s not detected on port %s", deviceClass.getSimpleName(), portName));
   }

@@ -18,7 +18,8 @@ public class NxtGyroSensor
 
   public int getAngularSpeed() {
     this.setSensorMode(this.getSensor().getAngleSpeedMode())
-        .getSensorMode().fetchSample(this.getSamples(), 0);
+        .getSensorMode()
+        .fetchSample(this.getSamples(), 0);
     return (int) this.getSample(0);
   }
 }

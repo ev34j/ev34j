@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.ev34j</groupId>
   <artifactId>ev34j</artifactId>
-  <version>0.1.11-SNAPSHOT</version>
+  <version>0.1.12-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
@@ -28,17 +28,6 @@
     <maven.compiler.version>3.5</maven.compiler.version>
     <maven-jar-plugin.version>2.6</maven-jar-plugin.version>
   </properties>
-
-  <distributionManagement>
-    <repository>
-      <id>release-repo</id>
-      <url>http://maven.haptava.io:8080/nexus/content/repositories/releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>snapshot-repo</id>
-      <url>http://maven.haptava.io:8080/nexus/content/repositories/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
 
   <build>
     <resources>

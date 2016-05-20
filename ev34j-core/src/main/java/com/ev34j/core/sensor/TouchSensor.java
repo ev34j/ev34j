@@ -8,12 +8,6 @@ import static com.ev34j.core.sensor.ModeType.TOUCH;
 import static com.ev34j.core.sensor.SensorValue.VALUE0;
 
 /**
- * Basic sensor driver for the Lego EV3 Touch sensor
- *
- * @author andy
- */
-
-/**
  * <b>Lego EV3 Touch sensor</b><br>
  * The analog EV3 Touch Sensor is a simple but exceptionally precise tool that detects when its front button is pressed or released.
  * <p>
@@ -52,17 +46,11 @@ import static com.ev34j.core.sensor.SensorValue.VALUE0;
 public class TouchSensor
     extends GenericSensor {
 
-  public TouchSensor(final SensorPort sensorPort,
-                     final ConnnectionType connnectionType,
-                     final SensorType sensorType) {
-    this(TouchSensor.class, sensorPort, connnectionType, sensorType);
-  }
-
   public TouchSensor(final Class<?> deviceClass,
                      final SensorPort sensorPort,
                      final ConnnectionType connnectionType,
                      final SensorType sensorType) {
-    super(deviceClass, sensorPort, connnectionType, sensorType);
+    super(deviceClass, sensorPort, connnectionType, sensorType, false);
     this.assignModes(new TouchMode(this.getDevicePath()));
   }
 
