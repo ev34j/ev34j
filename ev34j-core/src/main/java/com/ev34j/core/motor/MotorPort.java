@@ -63,13 +63,14 @@ public enum MotorPort {
     }
   }
 
-  public static MotorPort findByPort(final String port) {
-    if (port == null)
-      throw new IllegalArgumentException("Invalid port: null");
-    for (final MotorPort motorPort : MotorPort.values()) {
-      if (motorPort.getPortName().equalsIgnoreCase(port))
-        return motorPort;
+  public static MotorPort findByPort(final String portName) {
+    if (portName == null)
+      throw new IllegalArgumentException("Invalid port name: null");
+    for (final MotorPort port : MotorPort.values()) {
+      // Match the getPortName() value or the default ev3 name
+      if (port.getPortName().equalsIgnoreCase(portName) || port.ev3PortName.equalsIgnoreCase(portName))
+        return port;
     }
-    throw new IllegalArgumentException(format("Invalid port: %s", port));
+    throw new IllegalArgumentException(format("Invalid port name: %s", portName));
   }
 }

@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.github.ev34j</groupId>
     <artifactId>ev34j</artifactId>
-    <version>0.1.9-SNAPSHOT</version>
+    <version>0.1.10-SNAPSHOT</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
@@ -15,7 +15,7 @@
     <dependency>
       <groupId>com.github.ev34j</groupId>
       <artifactId>ev34j-mindstorm</artifactId>
-      <version>0.1.9-SNAPSHOT</version>
+      <version>0.1.10-SNAPSHOT</version>
     </dependency>
 
   </dependencies>
@@ -37,26 +37,6 @@
         <executions>
 
           <execution>
-            <id>brickpi</id>
-            <goals>
-              <goal>attached</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <finalName>brickpi-1.0</finalName>
-              <descriptorRefs>
-                <descriptorRef>jar-with-dependencies</descriptorRef>
-              </descriptorRefs>
-              <archive>
-                <manifest>
-                  <mainClass>com.ev34j.mindstorm.BrickPiTest</mainClass>
-                  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                </manifest>
-              </archive>
-            </configuration>
-          </execution>
-
-          <execution>
             <id>ev3</id>
             <goals>
               <goal>attached</goal>
@@ -70,26 +50,6 @@
               <archive>
                 <manifest>
                   <mainClass>com.ev34j.mindstorm.MotorTest</mainClass>
-                  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                </manifest>
-              </archive>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>us-test</id>
-            <goals>
-              <goal>attached</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <finalName>irtest-1.0</finalName>
-              <descriptorRefs>
-                <descriptorRef>jar-with-dependencies</descriptorRef>
-              </descriptorRefs>
-              <archive>
-                <manifest>
-                  <mainClass>com.ev34j.mindstorm.MotorDegreesTest</mainClass>
                   <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                 </manifest>
               </archive>

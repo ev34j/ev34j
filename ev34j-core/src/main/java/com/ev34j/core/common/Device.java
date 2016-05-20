@@ -63,7 +63,7 @@ public abstract class Device
         return;
       }
     }
-    throw new DeviceException(format("%s not detected in port %s", deviceClass.getSimpleName(), portName));
+    throw new DeviceException(format("%s not detected on port %s", deviceClass.getSimpleName(), portName));
   }
 
   /**

@@ -64,14 +64,15 @@ public enum SensorPort {
     }
   }
 
-  public static SensorPort findByPort(final String port) {
-    if (port == null)
-      throw new IllegalArgumentException("Invalid port: null");
-    for (final SensorPort sensorPort : SensorPort.values()) {
-      if (sensorPort.getPortName().equalsIgnoreCase(port))
-        return sensorPort;
+  public static SensorPort findByPort(final String portName) {
+    if (portName == null)
+      throw new IllegalArgumentException("Invalid port name: null");
+    for (final SensorPort port : SensorPort.values()) {
+      // Match the getPortName() value or the default ev3 name
+      if (port.getPortName().equalsIgnoreCase(portName) || port.ev3PortName.equalsIgnoreCase(portName))
+        return port;
     }
-    throw new IllegalArgumentException(format("Invalid port: %s", port));
+    throw new IllegalArgumentException(format("Invalid port name: %s", portName));
   }
 
   public static boolean isSensorAddress(final String address) {
