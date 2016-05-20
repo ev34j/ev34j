@@ -5,18 +5,19 @@ import com.ev34j.core.utils.Ev3DevFs;
 import static com.ev34j.core.common.AttributeName.LEDS;
 import static java.lang.String.format;
 
-public class Led {
+public class Ev3Led {
 
-  private static final String BRIGHTNESS     = "brightness" ;
-  private static final String MAX_BRIGHTNESS = "max_brightness" ;
+  public static final String BRIGHTNESS = "brightness";
+
+  private static final String MAX_BRIGHTNESS = "max_brightness";
   private static final int    MAX_VALUE      = 255;
 
   private final String redPath;
   private final String greenPath;
 
-  Led(final LedType ledType) {
-    this.redPath = format("%s/%s/%s", LEDS.getPath(), ledType.getRed(), BRIGHTNESS);
-    this.greenPath = format("%s/%s/%s", LEDS.getPath(), ledType.getGreen(), BRIGHTNESS);
+  Ev3Led(final Ev3LedType ev3LedType) {
+    this.redPath = format("%s/%s/%s", LEDS.getPath(), ev3LedType.getRed(), BRIGHTNESS);
+    this.greenPath = format("%s/%s/%s", LEDS.getPath(), ev3LedType.getGreen(), BRIGHTNESS);
   }
 
   private static void validateColor(final int value) {

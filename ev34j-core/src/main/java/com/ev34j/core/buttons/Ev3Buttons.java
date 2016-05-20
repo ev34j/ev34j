@@ -15,23 +15,23 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static java.lang.String.format;
 
-public class Buttons
+public class Ev3Buttons
     extends Device {
 
-  private static final AtomicReference<Buttons> SINGLETON = new AtomicReference<>();
+  private static final AtomicReference<Ev3Buttons> SINGLETON = new AtomicReference<>();
 
-  public static Buttons getInstance() {
+  public static Ev3Buttons getInstance() {
     if (SINGLETON.get() == null)
-      SINGLETON.compareAndSet(null, new Buttons());
+      SINGLETON.compareAndSet(null, new Ev3Buttons());
     return SINGLETON.get();
   }
 
-  private static class ButtonPress {
+  private static class Ev3ButtonPress {
     private final short type;
     private final short code;
     private final int   value;
 
-    private ButtonPress(final FileInputStream is)
+    private Ev3ButtonPress(final FileInputStream is)
         throws IOException {
       final byte[] buf = new byte[16];
       final int retval = is.read(buf);
@@ -57,7 +57,7 @@ public class Buttons
 
   private final File file = new File("/dev/input/event0");
 
-  private Buttons() {
+  private Ev3Buttons() {
     if (!Platform.isEv3Brick())
       throw new DeviceNotSupportedException(this.getClass());
   }
@@ -65,10 +65,10 @@ public class Buttons
   public ButtonType getButtonPress() {
     try (final FileInputStream is = new FileInputStream(this.file)) {
       // Each button press requires 4 reads -- 2 up and 2 down.
-      final ButtonPress press1 = new ButtonPress(is);
-      final ButtonPress press2 = new ButtonPress(is);
-      final ButtonPress release1 = new ButtonPress(is);
-      final ButtonPress release2 = new ButtonPress(is);
+      final Ev3ButtonPress press1 = new Ev3ButtonPress(is);
+      final Ev3ButtonPress press2 = new Ev3ButtonPress(is);
+      final Ev3ButtonPress release1 = new Ev3ButtonPress(is);
+      final Ev3ButtonPress release2 = new Ev3ButtonPress(is);
       return ButtonType.findByValue(press1.getCode());
     }
     catch (IOException e) {

@@ -1,12 +1,12 @@
 package com.ev34j.mindstorm.leds;
 
-import com.ev34j.core.leds.Led;
+import com.ev34j.core.leds.Ev3Led;
 
 public class Ev3StatusLight {
 
-  private final Led led;
+  private final Ev3Led led;
 
-  Ev3StatusLight(final Led led) {
+  Ev3StatusLight(final Ev3Led led) {
     this.led = led;
   }
 

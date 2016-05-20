@@ -5,17 +5,17 @@
   <parent>
     <groupId>com.github.ev34j</groupId>
     <artifactId>ev34j</artifactId>
-    <version>0.1.10-SNAPSHOT</version>
+    <version>0.1.11-SNAPSHOT</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>ev34j-mindstorm-examples</artifactId>
+  <artifactId>ev34j-mindstorm-tests</artifactId>
 
   <dependencies>
     <dependency>
       <groupId>com.github.ev34j</groupId>
       <artifactId>ev34j-mindstorm</artifactId>
-      <version>0.1.10-SNAPSHOT</version>
+      <version>0.1.11-SNAPSHOT</version>
     </dependency>
 
   </dependencies>
@@ -49,7 +49,7 @@
               </descriptorRefs>
               <archive>
                 <manifest>
-                  <mainClass>com.ev34j.mindstorm.MotorTest</mainClass>
+                  <mainClass>com.ev34j.mindstorm.BrickPiLedTest</mainClass>
                   <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                 </manifest>
               </archive>

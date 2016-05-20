@@ -17,24 +17,24 @@ import static java.lang.String.format;
  *
  * @author Juan Antonio Breña Moral
  */
-public class Sound
+public class Ev3Sound
     extends Device {
 
   private final static String SOUND_ROOT  = "/sys/devices/platform/snd-legoev3/";
   private final static String TONE_PATH   = SOUND_ROOT + "tone";
   private final static String VOLUME_PATH = SOUND_ROOT + "volume";
 
-  private final static AtomicReference<Sound> SINGLETON = new AtomicReference<>();
+  private final static AtomicReference<Ev3Sound> SINGLETON = new AtomicReference<>();
 
-  public static Sound getInstance() {
+  public static Ev3Sound getInstance() {
     if (SINGLETON.get() == null)
-      SINGLETON.compareAndSet(null, new Sound());
+      SINGLETON.compareAndSet(null, new Ev3Sound());
     return SINGLETON.get();
   }
 
   private int currVolume = -1;
 
-  private Sound() {
+  private Ev3Sound() {
     if (!Platform.isEv3Brick())
       throw new DeviceNotSupportedException(this.getClass());
   }

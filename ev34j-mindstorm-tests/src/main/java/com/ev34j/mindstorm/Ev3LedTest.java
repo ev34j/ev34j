@@ -5,7 +5,7 @@ import com.ev34j.mindstorm.leds.Ev3StatusLights;
 import com.ev34j.mindstorm.sound.Ev3Sound;
 import com.ev34j.mindstorm.utils.Wait;
 
-public class LedTest {
+public class Ev3LedTest {
 
   public static void main(String[] args) {
 

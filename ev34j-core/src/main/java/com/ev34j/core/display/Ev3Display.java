@@ -14,12 +14,12 @@ import java.util.concurrent.atomic.AtomicReference;
 import static java.awt.image.BufferedImage.TYPE_BYTE_BINARY;
 import static java.lang.String.format;
 
-public class Display {
-  private final static AtomicReference<Display> SINGLETON = new AtomicReference<>();
+public class Ev3Display {
+  private final static AtomicReference<Ev3Display> SINGLETON = new AtomicReference<>();
 
-  public static Display getInstance() {
+  public static Ev3Display getInstance() {
     if (SINGLETON.get() == null)
-      SINGLETON.compareAndSet(null, new Display());
+      SINGLETON.compareAndSet(null, new Ev3Display());
     return SINGLETON.get();
   }
 
@@ -39,7 +39,7 @@ public class Display {
 
   private final byte[] originalBuffer;
 
-  private Display() {
+  private Ev3Display() {
     if (!Platform.isEv3Brick())
       throw new DeviceNotSupportedException(this.getClass());
     this.originalBuffer = Ev3DevFs.readBytes(FRAMEBUFFER_PATH);
@@ -55,7 +55,7 @@ public class Display {
       this.screenBuffer[i] = (byte) ~this.screenBuffer[i];
   }
 
-  public Display refresh() {
+  public Ev3Display refresh() {
     this.writeBuffer(this.screenBuffer);
     return this;
   }
