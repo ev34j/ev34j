@@ -23,13 +23,12 @@ public class Ev3PixySensor
                            PIXY.getModuleType()));
   }
 
-  public AllSignaturesValues getAllSignaturesValues() {
+  public AllSignaturesValues getAllSignatures() {
     this.setSensorMode(this.getSensor().getAllSignaturesMode())
         .getSensorMode()
         .fetchSample(this.getSamples(), 0);
-    final byte sigLowByte = (byte) this.getSample(0);
-    final byte sigHighByte = (byte) this.getSample(1);
-    return new AllSignaturesValues(sigHighByte << 4 | sigLowByte,
+    return new AllSignaturesValues((int) this.getSample(0),
+                                   (int) this.getSample(1),
                                    (int) this.getSample(2),
                                    (int) this.getSample(3),
                                    (int) this.getSample(4),
@@ -37,7 +36,7 @@ public class Ev3PixySensor
                                    (int) this.getSample(6));
   }
 
-  public SignatureValues getSignatureValues(final int signature) {
+  public SignatureValues getSignature(final int signature) {
     if (signature < 1 || signature > 7)
       throw new IllegalArgumentException(format("Invalid signature number: %d", signature));
     this.setSensorMode(this.getSensor().getSingleSignatureMode(signature - 1))
@@ -51,7 +50,7 @@ public class Ev3PixySensor
   }
 
 
-  public ColorCodeValues getColorCodeValues() {
+  public ColorCodeValues getColorCode() {
     this.setSensorMode(this.getSensor().getColorCodeMode())
         .getSensorMode()
         .fetchSample(this.getSamples(), 0);

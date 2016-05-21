@@ -24,9 +24,7 @@ import static com.ev34j.core.sensor.SensorValue.VALUE6;
 public class VisionSensor
     extends GenericSensor {
 
-  private final ModeType[]       sigModeTypes               = {SIG1, SIG2, SIG3, SIG4, SIG5, SIG6, SIG7};
-  private final List<SensorMode> singleSignatureSensorModes = new ArrayList<>();
-  private final List<SensorMode> allSensorModes             = new ArrayList<>();
+  private final ModeType[] sigModeTypes = {SIG1, SIG2, SIG3, SIG4, SIG5, SIG6, SIG7};
 
   public VisionSensor(final Class<?> deviceClass,
                       final SensorPort sensorPort,
@@ -34,16 +32,14 @@ public class VisionSensor
                       final ModuleType moduleType) {
     super(deviceClass, sensorPort, driverType, moduleType, true);
 
-    this.allSensorModes.add(new AllSignaturesMode(ModeType.ALL_SIGS, this.getDevicePath()));
-    for (ModeType modeType : this.sigModeTypes) {
-      final SingleSignatureMode singleSigMode = new SingleSignatureMode(modeType, this.getDevicePath());
-      this.singleSignatureSensorModes.add(singleSigMode);
-      this.allSensorModes.add(singleSigMode);
-    }
-    this.allSensorModes.add(new ColorCodeMode(ModeType.COLOR_CODE, this.getDevicePath()));
-    this.allSensorModes.add(new AngleMode(ModeType.ANGLE, this.getDevicePath()));
+    final List<SensorMode> sensorModes = new ArrayList<>();
+    sensorModes.add(new AllSignaturesMode(this.getDevicePath()));
+    sensorModes.add(new ColorCodeMode(this.getDevicePath()));
+    sensorModes.add(new AngleMode(this.getDevicePath()));
+    for (ModeType modeType : this.sigModeTypes)
+      sensorModes.add(new SingleSignatureMode(modeType, this.getDevicePath()));
 
-    this.assignSensorModes(this.allSensorModes.toArray(new SensorMode[allSensorModes.size()]));
+    this.assignSensorModes(sensorModes.toArray(new SensorMode[sensorModes.size()]));
   }
 
   public SensorMode getAllSignaturesMode() { return this.getSensorMode(ModeType.ALL_SIGS); }
@@ -57,8 +53,8 @@ public class VisionSensor
   private class AllSignaturesMode
       extends SensorMode {
 
-    private AllSignaturesMode(final ModeType modeType, final File devicePath) {
-      super(modeType, devicePath, VALUE0, VALUE1, VALUE2, VALUE3, VALUE4, VALUE5, VALUE6);
+    private AllSignaturesMode(final File devicePath) {
+      super(ModeType.ALL_SIGS, devicePath, VALUE0, VALUE1, VALUE2, VALUE3, VALUE4, VALUE5, VALUE6);
     }
 
     @Override
@@ -101,8 +97,8 @@ public class VisionSensor
   private class ColorCodeMode
       extends SensorMode {
 
-    private ColorCodeMode(final ModeType modeType, final File devicePath) {
-      super(modeType, devicePath, VALUE0, VALUE1, VALUE2, VALUE3, VALUE4, VALUE5);
+    private ColorCodeMode(final File devicePath) {
+      super(ModeType.COLOR_CODE, devicePath, VALUE0, VALUE1, VALUE2, VALUE3, VALUE4, VALUE5);
     }
 
     @Override
@@ -123,8 +119,8 @@ public class VisionSensor
   private class AngleMode
       extends SensorMode {
 
-    private AngleMode(final ModeType modeType, final File devicePath) {
-      super(modeType, devicePath, VALUE0);
+    private AngleMode(final File devicePath) {
+      super(ModeType.ANGLE, devicePath, VALUE0);
     }
 
     @Override

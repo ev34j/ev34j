@@ -117,7 +117,7 @@ public class UltrasonicSensor
 
   private abstract class AbstractDistanceMode
       extends SensorMode {
-    public AbstractDistanceMode(final File devicePath, final ModeType modeType, final SensorValue... sensorValues) {
+    public AbstractDistanceMode(final ModeType modeType, final File devicePath, final SensorValue... sensorValues) {
       super(modeType, devicePath, sensorValues);
     }
 
@@ -133,7 +133,7 @@ public class UltrasonicSensor
   private class ContinuousDistanceCmsMode
       extends AbstractDistanceMode {
     private ContinuousDistanceCmsMode(File devicePath) {
-      super(devicePath, CONT_DISTANCE_CMS, VALUE0);
+      super(CONT_DISTANCE_CMS, devicePath, VALUE0);
     }
   }
 
@@ -143,7 +143,7 @@ public class UltrasonicSensor
       extends AbstractDistanceMode {
 
     private ContinuousDistanceInchesMode(File devicePath) {
-      super(devicePath, CONT_DISTANCE_INCHES, VALUE0);
+      super(CONT_DISTANCE_INCHES, devicePath, VALUE0);
     }
   }
 
@@ -153,7 +153,7 @@ public class UltrasonicSensor
       extends AbstractDistanceMode {
 
     private SingleDistanceCmsMode(File devicePath) {
-      super(devicePath, SINGLE_DISTANCE_CMS, VALUE0);
+      super(SINGLE_DISTANCE_CMS, devicePath, VALUE0);
     }
   }
 
@@ -163,7 +163,7 @@ public class UltrasonicSensor
       extends AbstractDistanceMode {
 
     private SingleDistanceInchesMode(File devicePath) {
-      super(devicePath, SINGLE_DISTANCE_INCHES, VALUE0);
+      super(SINGLE_DISTANCE_INCHES, devicePath, VALUE0);
     }
   }
 

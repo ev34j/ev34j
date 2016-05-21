@@ -2,15 +2,23 @@ package com.ev34j.core.sensor;
 
 public class AllSignaturesValues {
 
-  private final int signature;
+  private final int sigLowByte;
+  private final int sigHighByte;
   private final int x;
   private final int y;
   private final int width;
   private final int height;
   private final int angle;
 
-  public AllSignaturesValues(final int signature, final int x, final int y, final int width, final int height, final int angle) {
-    this.signature = signature;
+  public AllSignaturesValues(final int sigLowByte,
+                             final int sigHighByte,
+                             final int x,
+                             final int y,
+                             final int width,
+                             final int height,
+                             final int angle) {
+    this.sigLowByte = sigLowByte;
+    this.sigHighByte = sigHighByte;
     this.x = x;
     this.y = y;
     this.width = width;
@@ -18,7 +26,15 @@ public class AllSignaturesValues {
     this.angle = angle;
   }
 
-  public int getSignature() { return this.signature; }
+  public int getSigLowByte() { return this.sigLowByte; }
+
+  public int getSigHighByte() { return this.sigHighByte; }
+
+  public int getSignature() {
+    final byte sigLowByte = (byte) this.getSigLowByte();
+    final byte sigHighByte = (byte) this.getSigHighByte();
+    return sigHighByte << 8 | sigLowByte;
+  }
 
   public int getX() { return this.x; }
 

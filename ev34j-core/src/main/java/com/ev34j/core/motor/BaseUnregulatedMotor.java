@@ -8,7 +8,7 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
-import static com.ev34j.core.common.AttributeName.MODE;
+import static com.ev34j.core.common.AttributeName.LEGO_PORT_MODE;
 import static com.ev34j.core.common.AttributeName.POWER;
 import static com.ev34j.core.common.AttributeName.STATE;
 import static com.ev34j.core.common.AttributeName.VARIABLE_SPEED;
@@ -34,7 +34,7 @@ public class BaseUnregulatedMotor
 
   public BaseUnregulatedMotor(final MotorPort motorPort) {
     super(BaseUnregulatedMotor.class, LEGO_PORT, motorPort, SUPPORTED_PLATFORMS);
-    this.setAttribute(MODE, AttributeValue.DC_MOTOR);
+    this.setAttribute(LEGO_PORT_MODE, AttributeValue.DC_MOTOR);
 
     final File path = this.detectDevicePath(DC_MOTOR, this.getClass(), motorPort.getPortName(), motorPort.getPortAddress());
     this.setDevicePath(path);

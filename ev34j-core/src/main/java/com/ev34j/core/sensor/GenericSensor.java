@@ -1,6 +1,5 @@
 package com.ev34j.core.sensor;
 
-import com.ev34j.core.common.AttributeName;
 import com.ev34j.core.common.Device;
 import com.ev34j.core.common.DeviceException;
 import com.ev34j.core.common.Platform;
@@ -15,10 +14,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Logger;
 
-import static com.ev34j.core.common.AttributeName.MODE;
+import static com.ev34j.core.common.AttributeName.LEGO_PORT_MODE;
+import static com.ev34j.core.common.AttributeName.LEGO_SENSOR_MODE;
 import static com.ev34j.core.common.AttributeName.SET_DEVICE;
 import static com.ev34j.core.motor.PortType.LEGO_PORT;
 import static com.ev34j.core.motor.PortType.LEGO_SENSOR;
+import static com.ev34j.core.sensor.DriverType.NONE;
 import static java.lang.String.format;
 
 /**
@@ -52,11 +53,8 @@ public abstract class GenericSensor
       final String val = Ev3DevFs.readString(addressPath);
       // Check if it is a motor -- only reset sensor ports
       if (SensorPort.isSensorAddress(val)) {
-        final String mode = format("%s/%s", path, AttributeName.MODE.getAttribName());
-        // System.out.println(format("Begin resetting %s", mode));
-        Ev3DevFs.write(mode, DriverType.NONE.getType());
+        Ev3DevFs.write(format("%s/%s", path, LEGO_PORT_MODE.getAttribName()), NONE.getType());
         // Delay.delayMillis(GenericSensor.SWITCH_DELAY_MILLIS);
-        // System.out.println(format("End resetting %s", mode));
       }
     }
   }
@@ -65,7 +63,7 @@ public abstract class GenericSensor
    * Every device connected in a EV3 Brick with EV3Dev appears in /sys/class in a determinated category.
    * It is necessary to indicate the type and port.
    *
-   * @param sensorPort       The port where is connected the sensor or the actuator.
+   * @param sensorPort   The port where is connected the sensor or the actuator.
    * @param autoDetected
    * @throws DeviceException
    */
@@ -86,7 +84,7 @@ public abstract class GenericSensor
       LOGGER.fine(format("Detected sensor at %s", this.getDevicePath()));
 
       // Set the dir in lego-sensor -- the order here matters
-      this.setAttribute(MODE, driverType.getType());
+      this.setAttribute(LEGO_PORT_MODE, driverType.getType());
       this.setAttribute(SET_DEVICE, moduleType.getType());
       Delay.millis(SWITCH_DELAY_MILLIS);
 
@@ -96,29 +94,29 @@ public abstract class GenericSensor
     }
   }
 
-  protected void detectDevice(final PortType portType, final Class<?> deviceClass, final SensorPort sensorPort) {
-    final File path = this.detectDevicePath(portType, deviceClass, sensorPort.getPortName(), sensorPort.getPortAddress());
-    this.setDevicePath(path);
-  }
-
-  protected synchronized void assignSensorModes(final SensorMode... modes) {
-    if (modes == null || modes.length == 0)
-      throw new IllegalArgumentException("At least one SensorMode required");
-    this.modeTypeMap.clear();
-    for (final SensorMode mode : modes)
-      this.modeTypeMap.put(mode.getModeType(), mode);
-    this.setModeType(modes[0].getModeType());
-  }
+  private void setModeType(final ModeType modeType) { this.modeType.set(modeType); }
 
   protected ModeType getModeType() { return this.modeType.get(); }
-
-  private void setModeType(final ModeType modeType) { this.modeType.set(modeType); }
 
   protected SensorMode getSensorMode(final ModeType modeType) {
     final SensorMode sensorMode = this.modeTypeMap.get(modeType);
     if (sensorMode == null)
       throw new IllegalArgumentException(format("Invalid mode: %s", modeType));
     return sensorMode;
+  }
+
+  protected void detectDevice(final PortType portType, final Class<?> deviceClass, final SensorPort sensorPort) {
+    final File path = this.detectDevicePath(portType, deviceClass, sensorPort.getPortName(), sensorPort.getPortAddress());
+    this.setDevicePath(path);
+  }
+
+  protected synchronized void assignSensorModes(final SensorMode... sensorModes) {
+    if (sensorModes == null || sensorModes.length == 0)
+      throw new IllegalArgumentException("At least one SensorMode required");
+    this.modeTypeMap.clear();
+    for (final SensorMode mode : sensorModes)
+      this.modeTypeMap.put(mode.getModeType(), mode);
+    this.setModeType(sensorModes[0].getModeType());
   }
 
   /**
@@ -128,9 +126,6 @@ public abstract class GenericSensor
    * TODO: There really should be a better way to work out when the switch is
    * complete, if you don't wait though you end up reading data from the previous
    * mode.
-   *
-   * @param index       The mode to switch to.
-   * @param switchDelay Time in mS to delay after the switch.
    */
   protected void switchMode(final ModeType modeType) {
     if (!this.initialized.get() || modeType.isResetOnSample() || this.getModeType() != modeType) {
@@ -138,7 +133,7 @@ public abstract class GenericSensor
       this.initialized.set(true);
       final String modeValue = this.getModeType().getMode();
       if (modeValue != null) {
-        this.setAttribute(MODE, modeValue);
+        this.setAttribute(LEGO_SENSOR_MODE, modeValue);
         Delay.millis(SWITCH_DELAY_MILLIS);
       }
     }

@@ -7,7 +7,8 @@ public enum AttributeName {
 
   COMMAND("command"),
   SET_DEVICE("set_device"),
-  MODE("mode"),
+  LEGO_SENSOR_MODE("mode"),
+  LEGO_PORT_MODE("mode"),
   STATE("state"),
   POWER_SUPPLY("power_supply"),
   VOLTAGE("voltage_now"),

@@ -74,7 +74,6 @@ public abstract class BaseRegulatedMotor
   private int speed = 0;
 
   protected BaseRegulatedMotor(final Class<?> deviceClass, final MotorPort portName) {
-    // PRA super(LEGO_PORT, portName);
     super(deviceClass, TACHO_MOTOR, portName);
 
     // PRA this.setAttribute(MODE, CommandValue.TACHO_MOTOR);
