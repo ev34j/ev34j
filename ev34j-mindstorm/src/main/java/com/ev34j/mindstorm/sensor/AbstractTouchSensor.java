@@ -13,8 +13,8 @@ public abstract class AbstractTouchSensor
   protected AbstractTouchSensor(final Class<?> deviceClass, final String portName, final SensorSetting sensorSetting) {
     super(new TouchSensor(deviceClass,
                           SensorPort.findByPort(portName),
-                          sensorSetting.getConnnectionType(),
-                          sensorSetting.getSensorType()));
+                          sensorSetting.getDriverType(),
+                          sensorSetting.getModuleType()));
   }
 
   public boolean isPressed() { return this.getSensor().isPressed(); }

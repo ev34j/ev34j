@@ -3,34 +3,37 @@ package com.ev34j.core.sensor;
 public enum SensorSetting {
 
   // Touch
-  NXT_TOUCH(ConnnectionType.NXT_ANALOG, SensorType.NXT_TOUCH),
-  EV3_TOUCH(ConnnectionType.EV3_ANALOG, SensorType.EV3_TOUCH),
+  NXT_TOUCH(DriverType.NXT_ANALOG, ModuleType.NXT_TOUCH),
+  EV3_TOUCH(DriverType.EV3_ANALOG, ModuleType.EV3_TOUCH),
 
   // Sound
-  NXT_SOUND(ConnnectionType.NXT_ANALOG, SensorType.NXT_SOUND),
+  NXT_SOUND(DriverType.NXT_ANALOG, ModuleType.NXT_SOUND),
+
+  // Pixy
+  PIXY(DriverType.PIXY, ModuleType.PIXY),
 
   // Ultrasonic
-  NXT_US(ConnnectionType.NXT_IC2, SensorType.NXT_US),
-  EV3_US(ConnnectionType.EV3_UART, SensorType.EV3_US),
+  NXT_US(DriverType.NXT_IC2, ModuleType.NXT_US),
+  EV3_US(DriverType.EV3_UART, ModuleType.EV3_US),
 
   // Color
-  NXT1_COLOR(ConnnectionType.NXT_IC2, SensorType.NXT1_COLOR),
-  NXT2_COLOR(ConnnectionType.NXT_IC2, SensorType.NXT2_COLOR),
-  EV3_COLOR(ConnnectionType.EV3_UART, SensorType.EV3_COLOR),
+  NXT1_COLOR(DriverType.NXT_IC2, ModuleType.NXT1_COLOR),
+  NXT2_COLOR(DriverType.NXT_IC2, ModuleType.NXT2_COLOR),
+  EV3_COLOR(DriverType.EV3_UART, ModuleType.EV3_COLOR),
 
   // Gyro
-  NXT_GYRO(ConnnectionType.NXT_ANALOG, SensorType.NXT_GYRO),
-  EV3_GYRO(ConnnectionType.EV3_UART, SensorType.EV3_GYRO);
+  NXT_GYRO(DriverType.NXT_ANALOG, ModuleType.NXT_GYRO),
+  EV3_GYRO(DriverType.EV3_UART, ModuleType.EV3_GYRO);
 
-  private final ConnnectionType connnectionType;
-  private final SensorType      sensorType;
+  private final DriverType driverType;
+  private final ModuleType moduleType;
 
-  SensorSetting(final ConnnectionType connnectionType, final SensorType sensorType) {
-    this.connnectionType = connnectionType;
-    this.sensorType = sensorType;
+  SensorSetting(final DriverType driverType, final ModuleType moduleType) {
+    this.driverType = driverType;
+    this.moduleType = moduleType;
   }
 
-  public ConnnectionType getConnnectionType() { return this.connnectionType; }
+  public DriverType getDriverType() { return this.driverType; }
 
-  public SensorType getSensorType() { return this.sensorType; }
+  public ModuleType getModuleType() { return this.moduleType; }
 }

@@ -54,7 +54,7 @@ public abstract class GenericSensor
       if (SensorPort.isSensorAddress(val)) {
         final String mode = format("%s/%s", path, AttributeName.MODE.getAttribName());
         // System.out.println(format("Begin resetting %s", mode));
-        Ev3DevFs.write(mode, ConnnectionType.NONE.getType());
+        Ev3DevFs.write(mode, DriverType.NONE.getType());
         // Delay.delayMillis(GenericSensor.SWITCH_DELAY_MILLIS);
         // System.out.println(format("End resetting %s", mode));
       }
@@ -66,17 +66,17 @@ public abstract class GenericSensor
    * It is necessary to indicate the type and port.
    *
    * @param sensorPort       The port where is connected the sensor or the actuator.
-   * @param performPortSetup
+   * @param autoDetected
    * @throws DeviceException
    */
   protected GenericSensor(final Class<?> deviceClass,
                           final SensorPort sensorPort,
-                          final ConnnectionType connnectionType,
-                          final SensorType sensorType,
-                          final boolean performPortSetup)
+                          final DriverType driverType,
+                          final ModuleType moduleType,
+                          final boolean autoDetected)
       throws DeviceException {
     // EV3 detects the sensors automatically
-    if (Platform.isEv3Brick() && !performPortSetup) {
+    if (Platform.isEv3Brick() && autoDetected) {
       this.detectDevice(LEGO_SENSOR, deviceClass, sensorPort);
       LOGGER.fine(format("Detected sensor at %s", this.getDevicePath()));
     }
@@ -85,14 +85,13 @@ public abstract class GenericSensor
       this.detectDevice(LEGO_PORT, deviceClass, sensorPort);
       LOGGER.fine(format("Detected sensor at %s", this.getDevicePath()));
 
-      // Set the values in lego-sensor -- the order here matters
-      this.setAttribute(MODE, connnectionType.getType());
-      this.setAttribute(SET_DEVICE, sensorType.getType());
+      // Set the dir in lego-sensor -- the order here matters
+      this.setAttribute(MODE, driverType.getType());
+      this.setAttribute(SET_DEVICE, moduleType.getType());
       Delay.millis(SWITCH_DELAY_MILLIS);
 
       // Make sure dir was created
       this.detectDevice(LEGO_SENSOR, deviceClass, sensorPort);
-
       LOGGER.fine(format("Created sensor at %s", this.getDevicePath()));
     }
   }

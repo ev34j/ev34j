@@ -49,7 +49,7 @@
               </descriptorRefs>
               <archive>
                 <manifest>
-                  <mainClass>com.ev34j.mindstorm.NxtSoundTest</mainClass>
+                  <mainClass>com.ev34j.mindstorm.PixyTest</mainClass>
                   <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                 </manifest>
               </archive>

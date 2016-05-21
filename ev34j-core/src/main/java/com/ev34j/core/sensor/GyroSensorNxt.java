@@ -67,7 +67,7 @@ public class GyroSensorNxt
     extends GenericSensor {
 
   public GyroSensorNxt(final Class<?> deviceClass, final SensorPort sensorPort, final SensorSetting sensorSetting) {
-    super(deviceClass, sensorPort, sensorSetting.getConnnectionType(), sensorSetting.getSensorType(), false);
+    super(deviceClass, sensorPort, sensorSetting.getDriverType(), sensorSetting.getModuleType(), true);
     assignModes(new AngularSpeedMode(this.getDevicePath()));
   }
 
@@ -99,7 +99,7 @@ public class GyroSensorNxt
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(0));
+      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 }

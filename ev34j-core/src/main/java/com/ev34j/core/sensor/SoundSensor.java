@@ -13,9 +13,9 @@ public class SoundSensor
 
   public SoundSensor(final Class<?> deviceClass,
                      final SensorPort sensorPort,
-                     final ConnnectionType connnectionType,
-                     final SensorType sensorType) {
-    super(deviceClass, sensorPort, connnectionType, sensorType, true);
+                     final DriverType driverType,
+                     final ModuleType moduleType) {
+    super(deviceClass, sensorPort, driverType, moduleType, false);
     // performPortSetup required for sound sensor: http://www.ev3dev.org/docs/sensors/#fn:nxt-analog
     this.assignModes(new SoundPressureFlatMode(this.getDevicePath()),
                      new SoundPressureWeightedMode(this.getDevicePath()));
@@ -35,7 +35,7 @@ public class SoundSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(0));
+      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 
@@ -49,7 +49,7 @@ public class SoundSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(0));
+      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 }

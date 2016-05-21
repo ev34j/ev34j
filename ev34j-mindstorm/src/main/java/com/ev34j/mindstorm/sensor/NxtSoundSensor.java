@@ -15,8 +15,8 @@ public class NxtSoundSensor
   public NxtSoundSensor(final String portName) {
     super(new SoundSensor(NxtSoundSensor.class,
                           SensorPort.findByPort(portName),
-                          NXT_SOUND.getConnnectionType(),
-                          NXT_SOUND.getSensorType()));
+                          NXT_SOUND.getDriverType(),
+                          NXT_SOUND.getModuleType()));
   }
 
   public float getSoundPressureFlatPct() {

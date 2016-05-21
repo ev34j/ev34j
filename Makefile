@@ -1,5 +1,5 @@
-#EV3_NAME = ev3dev
-EV3_NAME = brickpi
+EV3_NAME = ev3dev
+#EV3_NAME = brickpi
 EV3_PASSWORD = maker
 
 javadocs:

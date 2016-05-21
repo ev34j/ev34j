@@ -21,7 +21,7 @@ public abstract class SensorMode {
       this.sensorPaths.add(format("%s/%s", devicePath, sensorValue.getValue()));
   }
 
-  public abstract void fetchSample(float[] sample, int offset);
+  public abstract void fetchSample(float[] sample, final int offset);
 
   public int sampleSize() { return 1; }
 

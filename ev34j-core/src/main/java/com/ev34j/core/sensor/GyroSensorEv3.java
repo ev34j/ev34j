@@ -68,7 +68,7 @@ public class GyroSensorEv3
     extends GenericSensor {
 
   public GyroSensorEv3(final Class<?> deviceClass, final SensorPort sensorPort, final SensorSetting sensorSetting) {
-    super(deviceClass, sensorPort, sensorSetting.getConnnectionType(), sensorSetting.getSensorType(), false);
+    super(deviceClass, sensorPort, sensorSetting.getDriverType(), sensorSetting.getModuleType(), true);
     assignModes(new AngleDegreesMode(this.getDevicePath()),
                 new RotationalSpeedMode(this.getDevicePath()));
   }
@@ -116,7 +116,7 @@ public class GyroSensorEv3
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(0));
+      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 
@@ -132,7 +132,7 @@ public class GyroSensorEv3
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(0));
+      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 }

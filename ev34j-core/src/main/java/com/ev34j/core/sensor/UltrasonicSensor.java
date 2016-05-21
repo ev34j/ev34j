@@ -70,7 +70,7 @@ public class UltrasonicSensor
     extends GenericSensor {
 
   public UltrasonicSensor(final Class<?> deviceClass, final SensorPort sensorPort, final SensorSetting sensorSetting) {
-    super(deviceClass, sensorPort, sensorSetting.getConnnectionType(), sensorSetting.getSensorType(), false);
+    super(deviceClass, sensorPort, sensorSetting.getDriverType(), sensorSetting.getModuleType(), true);
 
     // See: http://www.mindsensors.com/forum/topic/151_nxt-ultrasonic-sensor-in-pistorms
     if (Platform.isPiStorm())
@@ -124,7 +124,7 @@ public class UltrasonicSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      final float raw = Ev3DevFs.readFloat(this.getSensorPath(0));
+      final float raw = Ev3DevFs.readFloat(this.getSensorPath(offset));
       sample[offset] = raw < 0 ? 0 : raw;
     }
   }
@@ -183,8 +183,7 @@ public class UltrasonicSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      float raw = Ev3DevFs.readFloat(this.getSensorPath(0));
-      sample[offset] = raw;//port.getShort() & 0xff;
+      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 }

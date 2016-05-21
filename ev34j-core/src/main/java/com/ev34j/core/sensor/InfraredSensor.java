@@ -57,7 +57,7 @@ public class InfraredSensor
     extends GenericSensor {
 
   public InfraredSensor(final Class<?> deviceClass, final SensorPort sensorPort) {
-    super(deviceClass, sensorPort, ConnnectionType.EV3_UART, SensorType.EV3_IR, false);
+    super(deviceClass, sensorPort, DriverType.EV3_UART, ModuleType.EV3_IR, true);
     this.assignModes(new DistanceMode(this.getDevicePath()));
   }
 
@@ -89,7 +89,7 @@ public class InfraredSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      final float raw = Ev3DevFs.readFloat(this.getSensorPath(0));
+      final float raw = Ev3DevFs.readFloat(this.getSensorPath(offset));
       sample[offset] = raw < 0 ? 0 : raw;
 
       /*

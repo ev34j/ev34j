@@ -48,9 +48,9 @@ public class TouchSensor
 
   public TouchSensor(final Class<?> deviceClass,
                      final SensorPort sensorPort,
-                     final ConnnectionType connnectionType,
-                     final SensorType sensorType) {
-    super(deviceClass, sensorPort, connnectionType, sensorType, false);
+                     final DriverType driverType,
+                     final ModuleType moduleType) {
+    super(deviceClass, sensorPort, driverType, moduleType, true);
     this.assignModes(new TouchMode(this.getDevicePath()));
   }
 
@@ -87,7 +87,7 @@ public class TouchSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(0));
+      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 }

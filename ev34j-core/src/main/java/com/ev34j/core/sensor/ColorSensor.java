@@ -97,7 +97,7 @@ public class ColorSensor
   private short[] raw = new short[3];
 
   public ColorSensor(final Class<?> deviceClass, final SensorPort sensorPort, final SensorSetting sensorSetting) {
-    super(deviceClass, sensorPort, sensorSetting.getConnnectionType(), sensorSetting.getSensorType(), false);
+    super(deviceClass, sensorPort, sensorSetting.getDriverType(), sensorSetting.getModuleType(), true);
     this.assignModes(new ColorIdMode(this.getDevicePath()),
                      new ReflectedMode(this.getDevicePath()),
                      new RGBMode(this.getDevicePath()),
@@ -165,7 +165,7 @@ public class ColorSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(0));
+      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 
@@ -195,7 +195,7 @@ public class ColorSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(0));
+      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 
@@ -268,7 +268,7 @@ public class ColorSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(0));
+      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 }
