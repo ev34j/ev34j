@@ -6,7 +6,9 @@ public enum SensorValue {
   VALUE1("value1"),
   VALUE2("value2"),
   VALUE3("value3"),
-  VALUE4("value4");
+  VALUE4("value4"),
+  VALUE5("value5"),
+  VALUE6("value6");
 
   private final String value;
 
