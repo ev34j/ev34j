@@ -1,6 +1,6 @@
 package com.ev34j.core.sensor;
 
-public class AllValues {
+public class AllSignaturesValues {
 
   private final int signature;
   private final int x;
@@ -9,7 +9,7 @@ public class AllValues {
   private final int height;
   private final int angle;
 
-  public AllValues(final int signature, final int x, final int y, final int width, final int height, final int angle) {
+  public AllSignaturesValues(final int signature, final int x, final int y, final int width, final int height, final int angle) {
     this.signature = signature;
     this.x = x;
     this.y = y;

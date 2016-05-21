@@ -1,6 +1,6 @@
 package com.ev34j.mindstorm.sensor;
 
-import com.ev34j.core.sensor.AllValues;
+import com.ev34j.core.sensor.AllSignaturesValues;
 import com.ev34j.core.sensor.ColorCodeValues;
 import com.ev34j.core.sensor.SensorPort;
 import com.ev34j.core.sensor.SignatureValues;
@@ -23,27 +23,23 @@ public class Ev3PixySensor
                            PIXY.getModuleType()));
   }
 
-  private void validateSignature(final int signature) {
-    if (signature < 1 || signature > 7)
-      throw new IllegalArgumentException(format("Invalid signature number: %d", signature));
-  }
-
-  public AllValues getAllValues() {
+  public AllSignaturesValues getAllSignaturesValues() {
     this.setSensorMode(this.getSensor().getAllSignaturesMode())
         .getSensorMode()
         .fetchSample(this.getSamples(), 0);
     final byte sigLowByte = (byte) this.getSample(0);
     final byte sigHighByte = (byte) this.getSample(1);
-    return new AllValues(sigHighByte << 4 | sigLowByte,
-                         (int) this.getSample(2),
-                         (int) this.getSample(3),
-                         (int) this.getSample(4),
-                         (int) this.getSample(5),
-                         (int) this.getSample(6));
+    return new AllSignaturesValues(sigHighByte << 4 | sigLowByte,
+                                   (int) this.getSample(2),
+                                   (int) this.getSample(3),
+                                   (int) this.getSample(4),
+                                   (int) this.getSample(5),
+                                   (int) this.getSample(6));
   }
 
   public SignatureValues getSignatureValues(final int signature) {
-    this.validateSignature(signature);
+    if (signature < 1 || signature > 7)
+      throw new IllegalArgumentException(format("Invalid signature number: %d", signature));
     this.setSensorMode(this.getSensor().getSingleSignatureMode(signature - 1))
         .getSensorMode()
         .fetchSample(this.getSamples(), 0);

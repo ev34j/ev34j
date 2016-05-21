@@ -85,6 +85,9 @@ public class VisionSensor
     }
 
     @Override
+    public int sampleSize() { return 5; }
+
+    @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
       sample[0] = Ev3DevFs.readFloat(this.getSensorPath(0));
@@ -101,6 +104,9 @@ public class VisionSensor
     private ColorCodeMode(final ModeType modeType, final File devicePath) {
       super(modeType, devicePath, VALUE0, VALUE1, VALUE2, VALUE3, VALUE4, VALUE5);
     }
+
+    @Override
+    public int sampleSize() { return 6; }
 
     @Override
     public void fetchSample(final float[] sample, final int offset) {
