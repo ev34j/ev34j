@@ -27,53 +27,40 @@ public class PixyCamera
                                (int) this.getSample(4));
   }
 
-  public SignatureValues getSignature1Value() {
-    this.setSensorMode(this.getSensor().getSig1Mode())
+  public int getCount(final int signature) {
+    this.setSensorMode(this.getSensor().getSigMode(signature - 1))
         .getSensorMode()
         .fetchSample(this.getSamples(), 0);
-    return this.newSignatureValues();
+    return (int) this.getSample(0);
   }
 
-  public SignatureValues getSignature2Values() {
-    this.setSensorMode(this.getSensor().getSig2Mode())
+  public int getX(final int signature) {
+    this.setSensorMode(this.getSensor().getSigMode(signature - 1))
         .getSensorMode()
-        .fetchSample(this.getSamples(), 0);
-    return this.newSignatureValues();
+        .fetchSample(this.getSamples(), 1);
+    return (int) this.getSample(0);
   }
 
-  public SignatureValues getSignature3Values() {
-    this.setSensorMode(this.getSensor().getSig3Mode())
+  public int getY(final int signature) {
+    this.setSensorMode(this.getSensor().getSigMode(signature - 1))
         .getSensorMode()
-        .fetchSample(this.getSamples(), 0);
-    return this.newSignatureValues();
+        .fetchSample(this.getSamples(), 2);
+    return (int) this.getSample(0);
   }
 
-  public SignatureValues getSignature4Values() {
-    this.setSensorMode(this.getSensor().getSig4Mode())
+  public int getWidth(final int signature) {
+    this.setSensorMode(this.getSensor().getSigMode(signature - 1))
         .getSensorMode()
-        .fetchSample(this.getSamples(), 0);
-    return this.newSignatureValues();
+        .fetchSample(this.getSamples(), 3);
+    return (int) this.getSample(0);
   }
 
-  public SignatureValues getSignature5Values() {
-    this.setSensorMode(this.getSensor().getSig5Mode())
+  public int getHeight(final int signature) {
+    this.setSensorMode(this.getSensor().getSigMode(signature - 1))
         .getSensorMode()
-        .fetchSample(this.getSamples(), 0);
-    return this.newSignatureValues();
+        .fetchSample(this.getSamples(), 4);
+    return (int) this.getSample(0);
   }
 
-  public SignatureValues getSignature6Values() {
-    this.setSensorMode(this.getSensor().getSig6Mode())
-        .getSensorMode()
-        .fetchSample(this.getSamples(), 0);
-    return this.newSignatureValues();
-  }
-
-  public SignatureValues getSignature7Values() {
-    this.setSensorMode(this.getSensor().getSig7Mode())
-        .getSensorMode()
-        .fetchSample(this.getSamples(), 0);
-    return this.newSignatureValues();
-  }
 
 }

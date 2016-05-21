@@ -98,10 +98,10 @@ public class ColorSensor
 
   public ColorSensor(final Class<?> deviceClass, final SensorPort sensorPort, final SensorSetting sensorSetting) {
     super(deviceClass, sensorPort, sensorSetting.getDriverType(), sensorSetting.getModuleType(), true);
-    this.assignModes(new ColorIdMode(this.getDevicePath()),
-                     new ReflectedMode(this.getDevicePath()),
-                     new RGBMode(this.getDevicePath()),
-                     new AmbientMode(this.getDevicePath()));
+    this.assignSensorModes(new ColorIdMode(this.getDevicePath()),
+                           new ReflectedMode(this.getDevicePath()),
+                           new RGBMode(this.getDevicePath()),
+                           new AmbientMode(this.getDevicePath()));
   }
 
   /*
@@ -165,7 +165,7 @@ public class ColorSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
+      sample[0] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 
@@ -195,7 +195,7 @@ public class ColorSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
+      sample[0] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 
@@ -236,9 +236,9 @@ public class ColorSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(0));
-      sample[offset + 1] = Ev3DevFs.readFloat(this.getSensorPath(1));
-      sample[offset + 2] = Ev3DevFs.readFloat(this.getSensorPath(2));
+      sample[0] = Ev3DevFs.readFloat(this.getSensorPath(0));
+      sample[1] = Ev3DevFs.readFloat(this.getSensorPath(1));
+      sample[2] = Ev3DevFs.readFloat(this.getSensorPath(2));
     }
   }
 
@@ -268,7 +268,7 @@ public class ColorSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
+      sample[0] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 }

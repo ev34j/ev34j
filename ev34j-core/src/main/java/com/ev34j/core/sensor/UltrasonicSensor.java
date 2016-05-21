@@ -76,11 +76,11 @@ public class UltrasonicSensor
     if (Platform.isPiStorm())
       throw new DeviceNotSupportedException(this.getClass());
 
-    this.assignModes(new ContinuousDistanceCmsMode(this.getDevicePath()),
-                     new ContinuousDistanceInchesMode(this.getDevicePath()),
-                     new SingleDistanceCmsMode(this.getDevicePath()),
-                     new SingleDistanceInchesMode(this.getDevicePath()),
-                     new ListenMode(this.getDevicePath()));
+    this.assignSensorModes(new ContinuousDistanceCmsMode(this.getDevicePath()),
+                           new ContinuousDistanceInchesMode(this.getDevicePath()),
+                           new SingleDistanceCmsMode(this.getDevicePath()),
+                           new SingleDistanceInchesMode(this.getDevicePath()),
+                           new ListenMode(this.getDevicePath()));
   }
 
   /**
@@ -124,8 +124,7 @@ public class UltrasonicSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      final float raw = Ev3DevFs.readFloat(this.getSensorPath(offset));
-      sample[offset] = raw < 0 ? 0 : raw;
+      sample[0] = Math.max(0F, Ev3DevFs.readFloat(this.getSensorPath(offset)));
     }
   }
 
@@ -183,7 +182,7 @@ public class UltrasonicSensor
     @Override
     public void fetchSample(final float[] sample, final int offset) {
       switchMode(this.getModeType());
-      sample[offset] = Ev3DevFs.readFloat(this.getSensorPath(offset));
+      sample[0] = Ev3DevFs.readFloat(this.getSensorPath(offset));
     }
   }
 }

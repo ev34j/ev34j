@@ -101,12 +101,7 @@ public abstract class GenericSensor
     this.setDevicePath(path);
   }
 
-  /**
-   * Define the set of modes to be made available for this sensor.
-   *
-   * @param modes An array containing a list of modes
-   */
-  protected synchronized void assignModes(final SensorMode... modes) {
+  protected synchronized void assignSensorModes(final SensorMode... modes) {
     if (modes == null || modes.length == 0)
       throw new IllegalArgumentException("At least one SensorMode required");
     this.modeTypeMap.clear();
