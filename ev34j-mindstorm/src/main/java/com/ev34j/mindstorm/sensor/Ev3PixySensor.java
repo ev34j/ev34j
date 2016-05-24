@@ -6,7 +6,7 @@ import com.ev34j.core.sensor.SensorPort;
 import com.ev34j.core.sensor.SignatureValues;
 import com.ev34j.core.sensor.VisionSensor;
 
-import static com.ev34j.core.sensor.SensorSetting.PIXY;
+import static com.ev34j.core.sensor.SensorSetting.PIXY_SENSOR;
 import static java.lang.String.format;
 
 public class Ev3PixySensor
@@ -19,8 +19,8 @@ public class Ev3PixySensor
   public Ev3PixySensor(final String portName) {
     super(new VisionSensor(Ev3PixySensor.class,
                            SensorPort.findByPort(portName),
-                           PIXY.getDriverType(),
-                           PIXY.getModuleType()));
+                           PIXY_SENSOR.getDriverType(),
+                           PIXY_SENSOR.getModuleType()));
   }
 
   public AllSignaturesValues getAllSignatures() {

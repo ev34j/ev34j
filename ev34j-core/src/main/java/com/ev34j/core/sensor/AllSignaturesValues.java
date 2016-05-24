@@ -33,7 +33,7 @@ public class AllSignaturesValues {
   public int getSignature() {
     final byte sigLowByte = (byte) this.getSigLowByte();
     final byte sigHighByte = (byte) this.getSigHighByte();
-    return sigHighByte << 8 | sigLowByte;
+    return (sigHighByte << 8) | sigLowByte;
   }
 
   public int getX() { return this.x; }

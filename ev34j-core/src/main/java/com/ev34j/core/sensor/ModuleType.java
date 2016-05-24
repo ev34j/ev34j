@@ -13,7 +13,7 @@ enum ModuleType {
   NXT_TOUCH("lego-nxt-touch"),
   NXT_SOUND("lego-nxt-sound"),
   NXT_US("lego-nxt-us"),
-  PIXY("nxt-i2c-sensor");
+  NXT_I2C_SENSOR("nxt-i2c-sensor");
 
   private final String type;
 

@@ -56,26 +56,11 @@ public abstract class Device
     for (final File path : Ev3DevFs.getDevicePaths(portType)) {
       final String addressPath = format("%s/%s", path, ADDRESS);
       final String addressVal = Ev3DevFs.readString(addressPath);
-      // NXT Ultrasonic sensor address is in2:i2c1, whereas EV3 IR sensor address is just in2
+      // NXT Ultrasonic sensor address is in2:i2c1, whereas EV3 IR sensor address is just in2, so use .startsWith()
       if (addressVal.startsWith(portAddress))
         return path;
     }
     throw new DeviceException(format("%s not detected on port %s", deviceClass.getSimpleName(), portName));
-  }
-
-  /**
-   * Close the sensor. Close associated resources.
-   */
-  @Override
-  public void close() {
-    for (Closeable res : this.closeList)
-      try {
-        res.close();
-      }
-      catch (IOException e) {
-        // this should not happen
-        throw new DeviceException("Error during close", e);
-      }
   }
 
   protected String getStringAttribute(final AttributeName attribute) {
@@ -104,5 +89,20 @@ public abstract class Device
 
   protected void setAttribute(final AttributeName attribute, final float value) {
     Ev3DevFs.write(this.getAttributePath(attribute), value);
+  }
+
+  /**
+   * Close the sensor. Close associated resources.
+   */
+  @Override
+  public void close() {
+    for (Closeable res : this.closeList)
+      try {
+        res.close();
+      }
+      catch (IOException e) {
+        // this should not happen
+        throw new DeviceException("Error during close", e);
+      }
   }
 }

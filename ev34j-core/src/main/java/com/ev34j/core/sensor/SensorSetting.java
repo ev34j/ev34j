@@ -10,7 +10,7 @@ public enum SensorSetting {
   NXT_SOUND(DriverType.NXT_ANALOG, ModuleType.NXT_SOUND),
 
   // Pixy
-  PIXY(DriverType.PIXY, ModuleType.PIXY),
+  PIXY_SENSOR(DriverType.PIXY, ModuleType.NXT_I2C_SENSOR),
 
   // Ultrasonic
   NXT_US(DriverType.NXT_IC2, ModuleType.NXT_US),

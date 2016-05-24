@@ -83,7 +83,7 @@ public abstract class GenericSensor
       this.detectDevice(LEGO_PORT, deviceClass, sensorPort);
       LOGGER.fine(format("Detected sensor at %s", this.getDevicePath()));
 
-      // Set the dir in lego-sensor -- the order here matters
+      // Create the dir in /sys/class/lego-sensor with these calls -- the order here matters
       this.setAttribute(LEGO_PORT_MODE, driverType.getType());
       this.setAttribute(SET_DEVICE, moduleType.getType());
       Delay.millis(SWITCH_DELAY_MILLIS);

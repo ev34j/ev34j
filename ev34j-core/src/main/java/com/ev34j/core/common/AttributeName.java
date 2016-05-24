@@ -5,10 +5,10 @@ import static java.lang.String.format;
 
 public enum AttributeName {
 
-  COMMAND("command"),
-  SET_DEVICE("set_device"),
   LEGO_SENSOR_MODE("mode"),
   LEGO_PORT_MODE("mode"),
+  SET_DEVICE("set_device"),
+  COMMAND("command"),
   STATE("state"),
   POWER_SUPPLY("power_supply"),
   VOLTAGE("voltage_now"),
