@@ -1,12 +1,12 @@
 package com.ev34j.mindstorm.leds;
 
-import com.ev34j.core.leds.BrickPiLed;
+import com.ev34j.core.leds.brickpi.Led;
 
 public class BrickPiStatusLight {
 
-  private final BrickPiLed led;
+  private final Led led;
 
-  BrickPiStatusLight(final BrickPiLed led) {
+  BrickPiStatusLight(final Led led) {
     this.led = led;
   }
 

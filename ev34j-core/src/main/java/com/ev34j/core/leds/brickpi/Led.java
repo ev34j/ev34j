@@ -1,16 +1,16 @@
-package com.ev34j.core.leds;
+package com.ev34j.core.leds.brickpi;
 
 import com.ev34j.core.utils.Ev3DevFs;
 
 import static com.ev34j.core.common.AttributeName.LEDS;
-import static com.ev34j.core.leds.Ev3Led.BRIGHTNESS;
+import static com.ev34j.core.leds.ev3.Led.BRIGHTNESS;
 import static java.lang.String.format;
 
-public class BrickPiLed {
+public class Led {
 
   private final String path;
 
-  BrickPiLed(final BrickPiLedType ledType) {
+  Led(final LedType ledType) {
     this.path = format("%s/%s/%s", LEDS.getPath(), ledType.getPath(), BRIGHTNESS);
   }
 

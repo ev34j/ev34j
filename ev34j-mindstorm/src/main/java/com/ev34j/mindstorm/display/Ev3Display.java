@@ -1,31 +1,33 @@
 package com.ev34j.mindstorm.display;
 
+import com.ev34j.core.display.ev3.Display;
+
 import java.awt.Polygon;
 
 public class Ev3Display {
 
   private Ev3Display() { }
 
-  public static int getWidth() { return com.ev34j.core.display.Ev3Display.getInstance().getDisplayWidth(); }
+  public static int getWidth() { return Display.getInstance().getDisplayWidth(); }
 
-  public static int getHeight() { return com.ev34j.core.display.Ev3Display.getInstance().getDisplayHeight(); }
+  public static int getHeight() { return Display.getInstance().getDisplayHeight(); }
 
   public static void clear() {
-    final com.ev34j.core.display.Ev3Display display = com.ev34j.core.display.Ev3Display.getInstance();
+    final Display display = Display.getInstance();
     display.clearGraphicsBuffer();
     display.clearScreenBuffer();
     refresh();
   }
 
   public static void inverse() {
-    com.ev34j.core.display.Ev3Display.getInstance().inverse();
+    Display.getInstance().inverse();
     refresh();
   }
 
-  public static void refresh() { com.ev34j.core.display.Ev3Display.getInstance().refresh(); }
+  public static void refresh() { Display.getInstance().refresh(); }
 
   public static void drawPoint(final boolean clearScreen, final int x, final int y, final boolean color) {
-    final com.ev34j.core.display.Ev3Display display = com.ev34j.core.display.Ev3Display.getInstance();
+    final Display display = Display.getInstance();
     if (clearScreen)
       clear();
     display.setColor(color);
@@ -40,7 +42,7 @@ public class Ev3Display {
                               final int x2,
                               final int y2,
                               final boolean color) {
-    final com.ev34j.core.display.Ev3Display display = com.ev34j.core.display.Ev3Display.getInstance();
+    final Display display = Display.getInstance();
     if (clearScreen)
       clear();
     display.setColor(color);
@@ -55,7 +57,7 @@ public class Ev3Display {
                                 final int y,
                                 final int size,
                                 final boolean color) {
-    final com.ev34j.core.display.Ev3Display display = com.ev34j.core.display.Ev3Display.getInstance();
+    final Display display = Display.getInstance();
     if (clearScreen)
       clear();
     display.setColor(color);
@@ -71,7 +73,7 @@ public class Ev3Display {
                               final int height,
                               final boolean fill,
                               final boolean color) {
-    final com.ev34j.core.display.Ev3Display display = com.ev34j.core.display.Ev3Display.getInstance();
+    final Display display = Display.getInstance();
     if (clearScreen)
       clear();
     display.setColor(color);
@@ -90,7 +92,7 @@ public class Ev3Display {
                               final int height,
                               final boolean fill,
                               final boolean color) {
-    final com.ev34j.core.display.Ev3Display display = com.ev34j.core.display.Ev3Display.getInstance();
+    final Display display = Display.getInstance();
     if (clearScreen)
       clear();
     display.setColor(color);
@@ -111,7 +113,7 @@ public class Ev3Display {
                              final int arcAngle,
                              final boolean fill,
                              final boolean color) {
-    final com.ev34j.core.display.Ev3Display display = com.ev34j.core.display.Ev3Display.getInstance();
+    final Display display = Display.getInstance();
     if (clearScreen)
       clear();
     display.setColor(color);
@@ -127,7 +129,7 @@ public class Ev3Display {
                                  final Polygon polygon,
                                  final boolean fill,
                                  final boolean color) {
-    final com.ev34j.core.display.Ev3Display display = com.ev34j.core.display.Ev3Display.getInstance();
+    final Display display = Display.getInstance();
     if (clearScreen)
       clear();
     display.setColor(color);
@@ -140,7 +142,7 @@ public class Ev3Display {
   }
 
   public static void drawVerticalLine(final boolean clearScreen, final int col, final boolean color) {
-    final com.ev34j.core.display.Ev3Display display = com.ev34j.core.display.Ev3Display.getInstance();
+    final Display display = Display.getInstance();
     if (clearScreen)
       display.clearScreenBuffer();
     display.setColor(color);
@@ -149,7 +151,7 @@ public class Ev3Display {
   }
 
   public static void drawHorizontalLine(final boolean clearScreen, final int row, final boolean color) {
-    final com.ev34j.core.display.Ev3Display display = com.ev34j.core.display.Ev3Display.getInstance();
+    final Display display = Display.getInstance();
     if (clearScreen)
       display.clearScreenBuffer();
     display.setColor(color);
@@ -157,5 +159,5 @@ public class Ev3Display {
     refresh();
   }
 
-  public static void restoreOriginalScreen() { com.ev34j.core.display.Ev3Display.getInstance().restore(); }
+  public static void restoreOriginalScreen() { Display.getInstance().restore(); }
 }

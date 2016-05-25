@@ -1,6 +1,7 @@
 package com.ev34j.mindstorm.sound;
 
 import com.ev34j.core.sound.Espeak;
+import com.ev34j.core.sound.ev3.Sound;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -12,22 +13,22 @@ public class Ev3Sound {
 
   public static void beep(final int secs, final int volume) {
     setVolume(volume);
-    com.ev34j.core.sound.Ev3Sound.getInstance().beep(secs * 1000);
+    Sound.getInstance().beep(secs * 1000);
   }
 
   public static void playTone(final int frequency, final int secs, final int volume) {
     setVolume(volume);
-    com.ev34j.core.sound.Ev3Sound.getInstance().playTone(frequency, secs * 1000);
+    Sound.getInstance().playTone(frequency, secs * 1000);
   }
 
   public static void playNote(final Note note, final int secs, final int volume) {
     setVolume(volume);
-    com.ev34j.core.sound.Ev3Sound.getInstance().playTone(note.getFrequency(), secs * 1000);
+    Sound.getInstance().playTone(note.getFrequency(), secs * 1000);
   }
 
-  private static void setVolume(final int volume) { com.ev34j.core.sound.Ev3Sound.getInstance().setVolume(volume); }
+  private static void setVolume(final int volume) { Sound.getInstance().setVolume(volume); }
 
-  private static int getVolume() { return com.ev34j.core.sound.Ev3Sound.getInstance().getVolume(); }
+  private static int getVolume() { return Sound.getInstance().getVolume(); }
 
   public static void say(final String words, final int volume) {
     sayAsEnglish(words, volume);

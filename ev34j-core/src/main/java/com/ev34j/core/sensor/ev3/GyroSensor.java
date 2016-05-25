@@ -1,5 +1,9 @@
-package com.ev34j.core.sensor;
+package com.ev34j.core.sensor.ev3;
 
+import com.ev34j.core.sensor.GenericSensor;
+import com.ev34j.core.sensor.SensorMode;
+import com.ev34j.core.sensor.SensorPort;
+import com.ev34j.core.sensor.SensorSetting;
 import com.ev34j.core.utils.Ev3DevFs;
 
 import java.io.File;
@@ -64,10 +68,10 @@ import static com.ev34j.core.sensor.SensorValue.VALUE0;
  * @author Aswin Bouwmeester
  * @author Juan Antonio Breña Moral
  */
-public class GyroSensorEv3
+public class GyroSensor
     extends GenericSensor {
 
-  public GyroSensorEv3(final Class<?> deviceClass, final SensorPort sensorPort, final SensorSetting sensorSetting) {
+  public GyroSensor(final Class<?> deviceClass, final SensorPort sensorPort, final SensorSetting sensorSetting) {
     super(deviceClass, sensorPort, sensorSetting.getDriverType(), sensorSetting.getModuleType(), true);
     assignSensorModes(new AngleDegreesMode(this.getDevicePath()),
                       new RotationalSpeedMode(this.getDevicePath()));

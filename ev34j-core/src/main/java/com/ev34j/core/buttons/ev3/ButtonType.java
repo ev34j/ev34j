@@ -1,4 +1,4 @@
-package com.ev34j.core.buttons;
+package com.ev34j.core.buttons.ev3;
 
 import static java.lang.String.format;
 

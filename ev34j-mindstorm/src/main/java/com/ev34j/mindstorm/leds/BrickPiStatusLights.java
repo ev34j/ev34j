@@ -2,12 +2,12 @@ package com.ev34j.mindstorm.leds;
 
 import com.ev34j.core.common.DeviceNotSupportedException;
 import com.ev34j.core.common.Platform;
-import com.ev34j.core.leds.BrickPiLeds;
+import com.ev34j.core.leds.brickpi.Leds;
 
 public class BrickPiStatusLights {
 
-  private static final BrickPiStatusLight LEFT  = new BrickPiStatusLight(BrickPiLeds.getInstance().left());
-  private static final BrickPiStatusLight RIGHT = new BrickPiStatusLight(BrickPiLeds.getInstance().right());
+  private static final BrickPiStatusLight LEFT  = new BrickPiStatusLight(Leds.getInstance().left());
+  private static final BrickPiStatusLight RIGHT = new BrickPiStatusLight(Leds.getInstance().right());
 
   static {
     if (!Platform.isBrickPi())

@@ -1,4 +1,4 @@
-package com.ev34j.core.display;
+package com.ev34j.core.display.ev3;
 
 import com.ev34j.core.common.DeviceNotSupportedException;
 import com.ev34j.core.common.Platform;
@@ -14,12 +14,12 @@ import java.util.concurrent.atomic.AtomicReference;
 import static java.awt.image.BufferedImage.TYPE_BYTE_BINARY;
 import static java.lang.String.format;
 
-public class Ev3Display {
-  private final static AtomicReference<Ev3Display> SINGLETON = new AtomicReference<>();
+public class Display {
+  private final static AtomicReference<Display> SINGLETON = new AtomicReference<>();
 
-  public static Ev3Display getInstance() {
+  public static Display getInstance() {
     if (SINGLETON.get() == null)
-      SINGLETON.compareAndSet(null, new Ev3Display());
+      SINGLETON.compareAndSet(null, new Display());
     return SINGLETON.get();
   }
 
@@ -39,7 +39,7 @@ public class Ev3Display {
 
   private final byte[] originalBuffer;
 
-  private Ev3Display() {
+  private Display() {
     if (!Platform.isEv3Brick())
       throw new DeviceNotSupportedException(this.getClass());
     this.originalBuffer = Ev3DevFs.readBytes(FRAMEBUFFER_PATH);
@@ -55,7 +55,7 @@ public class Ev3Display {
       this.screenBuffer[i] = (byte) ~this.screenBuffer[i];
   }
 
-  public Ev3Display refresh() {
+  public Display refresh() {
     this.writeBuffer(this.screenBuffer);
     return this;
   }

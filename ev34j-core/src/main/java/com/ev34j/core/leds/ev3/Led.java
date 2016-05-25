@@ -1,11 +1,11 @@
-package com.ev34j.core.leds;
+package com.ev34j.core.leds.ev3;
 
 import com.ev34j.core.utils.Ev3DevFs;
 
 import static com.ev34j.core.common.AttributeName.LEDS;
 import static java.lang.String.format;
 
-public class Ev3Led {
+public class Led {
 
   public static final String BRIGHTNESS = "brightness";
 
@@ -15,7 +15,7 @@ public class Ev3Led {
   private final String redPath;
   private final String greenPath;
 
-  Ev3Led(final Ev3LedType ev3LedType) {
+  Led(final LedType ev3LedType) {
     this.redPath = format("%s/%s/%s", LEDS.getPath(), ev3LedType.getRed(), BRIGHTNESS);
     this.greenPath = format("%s/%s/%s", LEDS.getPath(), ev3LedType.getGreen(), BRIGHTNESS);
   }

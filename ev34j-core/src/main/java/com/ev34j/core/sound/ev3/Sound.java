@@ -1,4 +1,4 @@
-package com.ev34j.core.sound;
+package com.ev34j.core.sound.ev3;
 
 import com.ev34j.core.common.Device;
 import com.ev34j.core.common.DeviceNotSupportedException;
@@ -17,24 +17,24 @@ import static java.lang.String.format;
  *
  * @author Juan Antonio Breña Moral
  */
-public class Ev3Sound
+public class Sound
     extends Device {
 
   private final static String SOUND_ROOT  = "/sys/devices/platform/snd-legoev3/";
   private final static String TONE_PATH   = SOUND_ROOT + "tone";
   private final static String VOLUME_PATH = SOUND_ROOT + "volume";
 
-  private final static AtomicReference<Ev3Sound> SINGLETON = new AtomicReference<>();
+  private final static AtomicReference<Sound> SINGLETON = new AtomicReference<>();
 
-  public static Ev3Sound getInstance() {
+  public static Sound getInstance() {
     if (SINGLETON.get() == null)
-      SINGLETON.compareAndSet(null, new Ev3Sound());
+      SINGLETON.compareAndSet(null, new Sound());
     return SINGLETON.get();
   }
 
   private int currVolume = -1;
 
-  private Ev3Sound() {
+  private Sound() {
     if (!Platform.isEv3Brick())
       throw new DeviceNotSupportedException(this.getClass());
   }

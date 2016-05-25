@@ -1,19 +1,19 @@
 package com.ev34j.mindstorm.sensor;
 
-import com.ev34j.core.sensor.GyroSensorNxt;
 import com.ev34j.core.sensor.SensorPort;
 import com.ev34j.core.sensor.SensorSetting;
+import com.ev34j.core.sensor.nxt.GyroSensor;
 
 
 public class NxtGyroSensor
-    extends AbstractSensor<GyroSensorNxt> {
+    extends AbstractSensor<GyroSensor> {
 
   public NxtGyroSensor(final int portNum) {
     this("" + portNum);
   }
 
   public NxtGyroSensor(final String portName) {
-    super((new GyroSensorNxt(NxtGyroSensor.class, SensorPort.findByPort(portName), SensorSetting.NXT_GYRO)));
+    super((new GyroSensor(NxtGyroSensor.class, SensorPort.findByPort(portName), SensorSetting.NXT_GYRO)));
   }
 
   public int getAngularSpeed() {
