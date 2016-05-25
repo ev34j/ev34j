@@ -1,7 +1,7 @@
 package com.ev34j.mindstorm;
 
 import com.ev34j.mindstorm.motor.SteeringMotors;
-import com.ev34j.mindstorm.utils.Wait;
+import com.ev34j.mindstorm.time.Wait;
 
 public class MotorTest {
 

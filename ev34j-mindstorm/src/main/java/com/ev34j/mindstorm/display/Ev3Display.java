@@ -20,7 +20,7 @@ public class Ev3Display {
   }
 
   public static void inverse() {
-    Display.getInstance().inverse();
+    Display.getInstance().reverse();
     refresh();
   }
 

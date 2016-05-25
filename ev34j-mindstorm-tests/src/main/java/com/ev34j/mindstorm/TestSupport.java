@@ -4,7 +4,7 @@ import com.ev34j.core.battery.Battery;
 import com.ev34j.mindstorm.motor.AbstractMotor;
 import com.ev34j.mindstorm.sensor.AbstractColorSensor;
 import com.ev34j.mindstorm.sensor.AbstractTouchSensor;
-import com.ev34j.mindstorm.utils.Wait;
+import com.ev34j.mindstorm.time.Wait;
 
 import static java.lang.String.format;
 

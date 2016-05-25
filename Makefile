@@ -7,6 +7,10 @@ javadocs:
 	mkdir ./etc/javadocs/output
 	javadoc @etc/javadocs/options @etc/javadocs/packages
 
+post-javadocs: javadocs
+	rm -rf ../ev34j-docs/*
+	mv ./etc/javadocs/output/* ../ev34j-docs/
+
 build:
 	mvn clean package
 

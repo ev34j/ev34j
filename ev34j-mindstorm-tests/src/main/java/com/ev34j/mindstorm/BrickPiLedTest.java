@@ -2,7 +2,7 @@ package com.ev34j.mindstorm;
 
 import com.ev34j.mindstorm.leds.BrickPiStatusLight;
 import com.ev34j.mindstorm.leds.BrickPiStatusLights;
-import com.ev34j.mindstorm.utils.Wait;
+import com.ev34j.mindstorm.time.Wait;
 
 public class BrickPiLedTest {
 

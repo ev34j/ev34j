@@ -1,4 +1,4 @@
-package com.ev34j.mindstorm.utils;
+package com.ev34j.mindstorm.time;
 
 import java.util.concurrent.TimeUnit;
 

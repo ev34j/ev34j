@@ -50,7 +50,7 @@ public class Display {
 
   public int getDisplayHeight() { return HEIGHT_PIXELS; }
 
-  public void inverse() {
+  public void reverse() {
     for (int i = 0; i < this.screenBuffer.length; i++)
       this.screenBuffer[i] = (byte) ~this.screenBuffer[i];
   }

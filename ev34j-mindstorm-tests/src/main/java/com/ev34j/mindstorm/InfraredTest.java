@@ -2,7 +2,7 @@ package com.ev34j.mindstorm;
 
 import com.ev34j.mindstorm.sensor.Ev3InfraredSensor;
 import com.ev34j.mindstorm.sensor.Ev3TouchSensor;
-import com.ev34j.mindstorm.utils.Wait;
+import com.ev34j.mindstorm.time.Wait;
 
 import java.util.concurrent.TimeUnit;
 

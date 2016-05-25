@@ -7,7 +7,7 @@ import com.ev34j.mindstorm.sensor.Ev3InfraredSensor;
 import com.ev34j.mindstorm.sensor.Ev3TouchSensor;
 import com.ev34j.mindstorm.sensor.NxtUltrasonicSensor;
 import com.ev34j.mindstorm.sensor.NxtV2ColorSensor;
-import com.ev34j.mindstorm.utils.Wait;
+import com.ev34j.mindstorm.time.Wait;
 
 import static java.lang.String.format;
 
