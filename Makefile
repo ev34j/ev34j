@@ -1,4 +1,4 @@
-EV3_NAME = ev3dev2
+EV3_NAME = ev3dev
 #EV3_NAME = brickpi
 EV3_PASSWORD = maker
 
@@ -15,7 +15,7 @@ build:
 	mvn clean package
 
 scp:
-	sshpass -p $(EV3_PASSWORD) scp ev34j-mindstorm-tests/target/ev3app-jar-with-dependencies.jar robot@$(EV3_NAME):/home/robot
+	sshpass -p $(EV3_PASSWORD) scp ev34j-mindstorms-tests/target/ev3app-jar-with-dependencies.jar robot@$(EV3_NAME):/home/robot
 
 run:
 	sshpass -p $(EV3_PASSWORD) ssh robot@$(EV3_NAME) java -jar ev3app-jar-with-dependencies.jar
