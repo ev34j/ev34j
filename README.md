@@ -10,8 +10,8 @@ A Java library for [ev3dev](http://www.ev3dev.org) devices.
 The [Lego Mindstorm visual editor](http://www.lego.com/en-us/mindstorms/downloads/download-software)
 is a great first programming environment. However, as things get more complex,
 visual programming can get cumbersome and you want to  use code rather than blocks.
-The ev34j-mindstorm library is meant to bridge that the trasition to code
-by providing simple Java objects that map directly to the Mindstorm blocks from
+The [ev34j-mindstorm library](https://github.com/ev34j/ev34j) is meant to bridge the transition to code
+by providing simple Java objects that map directly to the Mindstorm blocks in
 the visual editor.
 
 ## Example Code
