@@ -1,13 +1,13 @@
 package com.ev34j.mindstorm;
 
 import com.ev34j.mindstorm.motor.SteeringMotors;
-import com.ev34j.mindstorm.time.Wait;
 
 public class MotorTest {
 
   public static void main(String[] args) {
 
     SteeringMotors steering = new SteeringMotors("A", "B");
+    /*
     int prePos1 = steering.getPosition1();
     int prePos2 = steering.getPosition2();
     steering.on(0, 20);
@@ -23,6 +23,20 @@ public class MotorTest {
     int postPos3 = steering.getPosition1();
     int postPos4 = steering.getPosition2();
     steering.off();
+*/
+
+    steering.onForDegrees(720, 0, 20);
+    steering.waitUntilStopped();
+    steering.onForDegrees(720, 0, -20);
+    steering.waitUntilStopped();
+
+    steering.off();
+
+
+    //steering.onForRotations(2, 0, -20);
+    //steering.onForRotations(2, 0, -20);
+    steering.waitUntilStopped();
+
 
     System.out.println();
   }

@@ -54,6 +54,10 @@ public abstract class AbstractMotor {
 
   private void advanceBy(final int position, final int percentPower) {
     this.setPower(percentPower);
+
+    // Polarity is set only with advanceBy() calls
+    this.motor.setForwardPolarity(percentPower > 0);
+
     this.motor.advanceBy(position);
   }
 

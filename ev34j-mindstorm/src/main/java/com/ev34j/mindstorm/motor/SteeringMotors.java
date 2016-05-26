@@ -39,6 +39,11 @@ public class SteeringMotors
     final int position2 = (int) (position * adjust2);
 
     this.setPower(percentPower);
+
+    // Polarity is set only with advanceBy() calls
+    this.getMotor1().setForwardPolarity(percentPower > 0);
+    this.getMotor2().setForwardPolarity(percentPower > 0);
+
     this.getMotor1().advanceBy(position1);
     this.getMotor2().advanceBy(position2);
   }
@@ -90,13 +95,7 @@ public class SteeringMotors
 
   public SteeringMotors onForDegrees(final int degrees, final int steering, final int percentPower) {
     validateDegrees(degrees);
-    validateSteering(steering);
-    validatePower(percentPower);
-
-    this.steering = steering;
-    final int position = (int) ((degrees / 360F) * this.getMotor1().getCountPerRotation());
-    this.advanceBy(position, percentPower);
-    return this;
+    return this.onForRotations(degrees / 360F, steering, percentPower);
   }
 
   public SteeringMotors onForRotations(final float rotations, final int steering, final int percentPower) {

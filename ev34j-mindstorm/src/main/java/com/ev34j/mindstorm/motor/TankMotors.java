@@ -41,6 +41,11 @@ public class TankMotors
     }
 
     this.setPower(percentPower1, percentPower2);
+
+    // Polarity is set only with advanceBy() calls
+    this.getMotor1().setForwardPolarity(percentPower1 > 0);
+    this.getMotor2().setForwardPolarity(percentPower2 > 0);
+
     this.getMotor1().advanceBy(position1);
     this.getMotor2().advanceBy(position2);
   }
