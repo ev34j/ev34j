@@ -16,6 +16,26 @@ the visual editor.
 
 ## Example Code
 
+```java
+import com.ev34j.mindstorm.motor.SteeringMotors;
+
+public class SimpleSteeringMotors {
+
+  public static void main(String[] args) {
+
+    System.out.println("Trying out SteeringMotors");
+    SteeringMotors motors = new SteeringMotors("A", "B");
+
+    // Go forward at a 45 degree angle
+    motors.onForRotations(2, 50, 25);
+    motors.waitUntilStopped();
+
+    // Go back at a 45 degree angle
+    motors.onForRotations(2, 50, -25);
+    motors.waitUntilStopped();
+  }
+}
+```
 
 ## Compatibility
 
@@ -38,9 +58,8 @@ and the javadocs are [here](http://docs.ev34j.com).
 
 ## Acknowledgments
 
-Thanks to
-[@dlech](https://github.com/dlech)
-and [@rhempel](https://github.com/rhempel)
- at [ev3dev.org](http://www.ev3dev.org)
-and [@jabrena](https://github.com/jabrena)
-at [ev3dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java).
+Sincere thanks to:
+
+* [@dlech](https://github.com/dlech) and [@rhempel](https://github.com/rhempel) for their wonderful [ev3dev.org](http://www.ev3dev.org) effort.
+
+* [@jabrena](https://github.com/jabrena) for his work to provide a LeJOS-like Java API at [ev3dev-lang-java](https://github.com/ev3dev-lang-java/ev3dev-lang-java).
