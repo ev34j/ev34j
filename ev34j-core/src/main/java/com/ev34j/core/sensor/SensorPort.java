@@ -1,6 +1,6 @@
 package com.ev34j.core.sensor;
 
-import com.ev34j.core.common.Platform;
+import com.ev34j.core.system.Platform;
 
 import static java.lang.String.format;
 

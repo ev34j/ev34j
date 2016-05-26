@@ -10,8 +10,8 @@
 
   <modules>
     <module>ev34j-core</module>
-    <module>ev34j-mindstorm</module>
-    <module>ev34j-mindstorm-tests</module>
+    <module>ev34j-mindstorms</module>
+    <module>ev34j-mindstorms-tests</module>
   </modules>
 
   <properties>

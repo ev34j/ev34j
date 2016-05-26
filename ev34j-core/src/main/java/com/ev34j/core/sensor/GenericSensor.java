@@ -1,9 +1,9 @@
 package com.ev34j.core.sensor;
 
 import com.ev34j.core.common.Device;
-import com.ev34j.core.common.DeviceException;
-import com.ev34j.core.common.Platform;
 import com.ev34j.core.motor.PortType;
+import com.ev34j.core.system.DeviceException;
+import com.ev34j.core.system.Platform;
 import com.ev34j.core.utils.Delay;
 import com.ev34j.core.utils.Ev3DevFs;
 

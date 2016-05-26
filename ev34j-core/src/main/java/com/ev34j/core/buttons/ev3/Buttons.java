@@ -1,9 +1,9 @@
 package com.ev34j.core.buttons.ev3;
 
 import com.ev34j.core.common.Device;
-import com.ev34j.core.common.DeviceException;
-import com.ev34j.core.common.DeviceNotSupportedException;
-import com.ev34j.core.common.Platform;
+import com.ev34j.core.system.DeviceException;
+import com.ev34j.core.system.DeviceNotSupportedException;
+import com.ev34j.core.system.Platform;
 
 import java.io.File;
 import java.io.FileInputStream;

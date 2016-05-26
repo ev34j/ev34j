@@ -1,7 +1,7 @@
 package com.ev34j.core.display.ev3;
 
-import com.ev34j.core.common.DeviceNotSupportedException;
-import com.ev34j.core.common.Platform;
+import com.ev34j.core.system.DeviceNotSupportedException;
+import com.ev34j.core.system.Platform;
 import com.ev34j.core.utils.Ev3DevFs;
 
 import java.awt.Color;

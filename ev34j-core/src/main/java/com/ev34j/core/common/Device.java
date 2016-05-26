@@ -1,6 +1,7 @@
 package com.ev34j.core.common;
 
 import com.ev34j.core.motor.PortType;
+import com.ev34j.core.system.DeviceException;
 import com.ev34j.core.utils.Ev3DevFs;
 
 import java.io.Closeable;
