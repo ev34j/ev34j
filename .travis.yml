@@ -6,6 +6,3 @@ jdk:
 notifications:
   email:
     - pambrose@mac.com
-
-after_success:
-  - mvn -B clean package
