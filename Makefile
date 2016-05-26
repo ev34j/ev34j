@@ -1,4 +1,4 @@
-EV3_NAME = ev3dev
+EV3_NAME = ev3dev2
 #EV3_NAME = brickpi
 EV3_PASSWORD = maker
 

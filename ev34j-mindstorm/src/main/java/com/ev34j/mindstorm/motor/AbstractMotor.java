@@ -26,7 +26,7 @@ public abstract class AbstractMotor {
       throw new IllegalArgumentException(format("Invalid degrees value: %d. Valid values are non-negative.", degrees));
   }
 
-  static void validateRotations(final float rotations) {
+  static void validateRotations(final double rotations) {
     if (rotations < 0)
       throw new IllegalArgumentException(format("Invalid rotations value: %s. Valid values are non-negative.", rotations));
   }
@@ -129,7 +129,7 @@ public abstract class AbstractMotor {
     return this;
   }
 
-  public AbstractMotor onForRotations(final float rotations, final int percentPower) {
+  public AbstractMotor onForRotations(final double rotations, final int percentPower) {
     validateRotations(rotations);
     validatePower(percentPower);
 

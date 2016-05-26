@@ -98,7 +98,7 @@ public class SteeringMotors
     return this.onForRotations(degrees / 360F, steering, percentPower);
   }
 
-  public SteeringMotors onForRotations(final float rotations, final int steering, final int percentPower) {
+  public SteeringMotors onForRotations(final double rotations, final int steering, final int percentPower) {
     validateRotations(rotations);
     validateSteering(steering);
     validatePower(percentPower);

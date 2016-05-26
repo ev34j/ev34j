@@ -101,7 +101,7 @@ public class TankMotors
     return this;
   }
 
-  public TankMotors onForRotations(final float rotations, final int percentPower1, final int percentPower2) {
+  public TankMotors onForRotations(final double rotations, final int percentPower1, final int percentPower2) {
     validateRotations(rotations);
     validatePower(percentPower1);
     validatePower(percentPower2);

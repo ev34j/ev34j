@@ -1,0 +1,11 @@
+language: java
+
+jdk:
+  - oraclejdk7
+
+notifications:
+  email:
+    - pambrose@mac.com
+
+after_success:
+  - mvn -B clean package
