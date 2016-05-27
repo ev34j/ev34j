@@ -28,7 +28,7 @@ public class SteeringMotors
     this.getMotor2().setSpeed(speed2);
   }
 
-  private void advanceBy(final int position, final int percentPower) {
+  private void advanceBy(final int percentPower, final int position) {
     if (position == 0)
       return;
 
@@ -81,10 +81,10 @@ public class SteeringMotors
     this.getMotor2().runForever();
   }
 
-  public SteeringMotors onForSecs(final int secs, final int steering, final int percentPower) {
-    validateSeconds(secs);
+  public SteeringMotors onForSecs(final int steering, final int percentPower, final int secs) {
     validateSteering(steering);
     validatePower(percentPower);
+    validateSeconds(secs);
 
     this.steering = steering;
     this.setPower(percentPower);
@@ -93,19 +93,19 @@ public class SteeringMotors
     return this;
   }
 
-  public SteeringMotors onForDegrees(final int degrees, final int steering, final int percentPower) {
+  public SteeringMotors onForDegrees(final int steering, final int percentPower, final int degrees) {
     validateDegrees(degrees);
-    return this.onForRotations(degrees / 360F, steering, percentPower);
+    return this.onForRotations(steering, percentPower, degrees / 360F);
   }
 
-  public SteeringMotors onForRotations(final double rotations, final int steering, final int percentPower) {
-    validateRotations(rotations);
+  public SteeringMotors onForRotations(final int steering, final int percentPower, final double rotations) {
     validateSteering(steering);
     validatePower(percentPower);
+    validateRotations(rotations);
 
     this.steering = steering;
     final int position = (int) (this.getMotor1().getCountPerRotation() * rotations);
-    this.advanceBy(position, percentPower);
+    this.advanceBy(percentPower, position);
     return this;
   }
 }

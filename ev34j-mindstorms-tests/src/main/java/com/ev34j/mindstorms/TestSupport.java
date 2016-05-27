@@ -65,7 +65,7 @@ public class TestSupport {
     motor.off();
     System.out.printf("Position: %d\n", motor.getPosition());
 
-    motor.onForSecs(3, -100);
+    motor.onForSecs(-100, 3);
     Wait.forSecs(3);
     System.out.printf("Position: %d\n", motor.getPosition());
     motor.reset();
@@ -82,7 +82,7 @@ public class TestSupport {
     */
     motor.reset();
     System.out.printf("Reset for onForRotations(): %d\n", motor.getPosition());
-    motor.onForRotations(3, 100);
+    motor.onForRotations(100, 3);
     Wait.forSecs(3);
     System.out.printf("Position: %d\n", motor.getPosition());
 
@@ -96,7 +96,7 @@ public class TestSupport {
 
     motor.reset();
     System.out.printf("Reset for advanceTo(): %d\n", motor.getPosition());
-    motor.onForDegrees(360, 75);
+    motor.onForDegrees(75, 360);
     Wait.forSecs(3);
     System.out.printf("Position: %d\n", motor.getPosition());
 

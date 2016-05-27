@@ -112,7 +112,7 @@ public abstract class AbstractMotor {
     this.motor.stop();
   }
 
-  public AbstractMotor onForSecs(final int secs, final int percentPower) {
+  public AbstractMotor onForSecs(final int percentPower, final int secs) {
     validateSeconds(secs);
     validatePower(percentPower);
 
@@ -121,7 +121,7 @@ public abstract class AbstractMotor {
     return this;
   }
 
-  public AbstractMotor onForDegrees(final int degrees, final int percentPower) {
+  public AbstractMotor onForDegrees(final int percentPower, final int degrees) {
     validateDegrees(degrees);
     validatePower(percentPower);
 
@@ -129,7 +129,7 @@ public abstract class AbstractMotor {
     return this;
   }
 
-  public AbstractMotor onForRotations(final double rotations, final int percentPower) {
+  public AbstractMotor onForRotations(final int percentPower, final double rotations) {
     validateRotations(rotations);
     validatePower(percentPower);
 

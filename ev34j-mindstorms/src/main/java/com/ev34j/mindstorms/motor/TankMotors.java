@@ -20,7 +20,7 @@ public class TankMotors
     this.getMotor2().setSpeed(speed2);
   }
 
-  private void advanceBy(final int position, final int percentPower1, final int percentPower2) {
+  private void advanceBy(final int percentPower1, final int percentPower2, final int position) {
     if (position == 0)
       return;
 
@@ -81,7 +81,7 @@ public class TankMotors
     this.getMotor2().runForever();
   }
 
-  public TankMotors onForSecs(final int secs, final int percentPower1, final int percentPower2) {
+  public TankMotors onForSecs(final int percentPower1, final int percentPower2, final int secs) {
     validateSeconds(secs);
     validatePower(percentPower1);
     validatePower(percentPower2);
@@ -92,21 +92,21 @@ public class TankMotors
     return this;
   }
 
-  public TankMotors onForDegrees(final int degrees, final int percentPower1, final int percentPower2) {
+  public TankMotors onForDegrees(final int percentPower1, final int percentPower2, final int degrees) {
     validateDegrees(degrees);
     validatePower(percentPower1);
     validatePower(percentPower2);
 
-    this.advanceBy((int) ((degrees / 360F) * this.getMotor1().getCountPerRotation()), percentPower1, percentPower2);
+    this.advanceBy(percentPower1, percentPower2, (int) ((degrees / 360F) * this.getMotor1().getCountPerRotation()));
     return this;
   }
 
-  public TankMotors onForRotations(final double rotations, final int percentPower1, final int percentPower2) {
+  public TankMotors onForRotations(final int percentPower1, final int percentPower2, final double rotations) {
     validateRotations(rotations);
     validatePower(percentPower1);
     validatePower(percentPower2);
 
-    this.advanceBy((int) (this.getMotor1().getCountPerRotation() * rotations), percentPower1, percentPower2);
+    this.advanceBy(percentPower1, percentPower2, (int) (this.getMotor1().getCountPerRotation() * rotations));
     return this;
   }
 }

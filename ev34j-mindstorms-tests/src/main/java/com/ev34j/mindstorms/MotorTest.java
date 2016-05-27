@@ -25,9 +25,9 @@ public class MotorTest {
     steering.off();
 */
 
-    steering.onForDegrees(720, 0, 20);
+    steering.onForDegrees(0, 20, 720);
     steering.waitUntilStopped();
-    steering.onForDegrees(720, 0, -20);
+    steering.onForDegrees(0, -20, 720);
     steering.waitUntilStopped();
 
     steering.off();
