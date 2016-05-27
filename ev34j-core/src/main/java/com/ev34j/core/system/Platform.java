@@ -10,7 +10,7 @@ import static com.ev34j.core.common.AttributeName.POWER_SUPPLY;
 import static java.lang.String.format;
 
 /**
- * Indicates if the execution enviroment is: EV3 Brick, PiStorm, or BrickPi
+ * Provides current execution enviroment information
  *
  * @author Juan Antonio Breña Moral
  */
