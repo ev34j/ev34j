@@ -27,11 +27,11 @@ public class SimpleSteeringMotors {
     SteeringMotors motors = new SteeringMotors("A", "B");
 
     // Go forward 2 rotations at 25% power
-    motors.onForRotations(2, 0, 25);
+    motors.onForRotations(0, 25, 2);
     motors.waitUntilStopped();
 
     // Go back 2 rotations at 25% power
-    motors.onForRotations(2, 0, -25);
+    motors.onForRotations(0, -25, 2);
     motors.waitUntilStopped();
   }
 }
