@@ -43,7 +43,7 @@ The ev34j-mindstorms library works with these devices:
 
 * [Lego Mindstorms - EV3](http://www.lego.com/en-us/mindstorms/about-ev3)
 * [BrickPi](http://www.dexterindustries.com/brickpi/)
-* [PiStorm](http://www.mindsensors.com/teaching-stem-with-robotics/13-pistorms-base-kit-raspberry-pi-brain-for-lego-robot)
+* [PiStorms](http://www.mindsensors.com/teaching-stem-with-robotics/13-pistorms-base-kit-raspberry-pi-brain-for-lego-robot)
 
 ## Usage
 
@@ -54,7 +54,7 @@ describes how to setup your environment and execute ev34j-based programs.
 
 The ev34j-mindstorms classes are outlined
 [here](https://github.com/ev34j/ev34j-mindstorm-tutorial/wiki/Ev34j-Mindstorms-Object-Summary)
-and the javadocs are [here](http://docs.ev34j.com).
+and the javadocs are [here](http://www.ev34j.com/javadocs/).
 
 ## Acknowledgments
 

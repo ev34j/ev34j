@@ -8,8 +8,8 @@ javadocs:
 	javadoc @etc/javadocs/options @etc/javadocs/packages
 
 post-javadocs: javadocs
-	rm -rf ../ev34j-docs/*
-	mv ./etc/javadocs/output/* ../ev34j-docs/
+	rm -rf ../ev34j.github.io/javadocs/*
+	mv ./etc/javadocs/output/* ../ev34j.github.io/javadocs/
 
 build:
 	mvn clean package
