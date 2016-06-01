@@ -1,4 +1,4 @@
-# Java bindings for ev3dev
+# ev34j
 
 [![Build Status](https://travis-ci.org/ev34j/ev34j.svg?branch=master)](https://travis-ci.org/ev34j/ev34j)
 [![Release](https://jitpack.io/v/ev34j/ev34j.svg)](https://jitpack.io/#ev34j/ev34j)
